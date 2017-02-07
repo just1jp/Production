@@ -10,7 +10,7 @@ App that alows you to see your friends on Google Map and message them in real ti
 
 ##Authors
 
-Anukul Shenoy 
+Anukul Shenoy   
 Aprajita Jain  
 Dan Svorcan  
 Hanyen Widjaja
