@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Getting Started</title>
+  <script src="scripts/prettify/prettify.js">
+  </script>
+  <script src="scripts/prettify/lang-css.js">
+  </script><!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
+  <link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="main">
+    <h1 class="page-title">Recommendations for future work</h1>
+    <ol>
+      <li>Move database handling from client to the server</li>
+      <li>Implement sockets between client and server</li>
+      <li>Optional: if you want to move from Firebase to a different DB (like MongoDB or MySQL) you'll probably want to implement socket functionality between DB and server, and then between server and client to ensure real time data transfers</li>
+      <li>Use <a href="https://cordova.apache.org/">Cordova</a> and <a href="http://phonegap.com/about/">PhoneGap</a> to render/run the application more efficiently on mobile devices</li>
+    </ol>
+    <p>
+      Right now our server only serves static files. Once the client receives index.html they have full access to the database. This way the client receives real-time updates from db (due to Firebase behind-the-scenes socket functionality).
+    </p>
+    <p>
+      However that's not very secure and any tech-savy client could easily hack the database this way. So we suggest moving the database handling functionality from the client to the server which will present two challenges:
+      <ol>
+        <li>The refactor itself - moving all the database functionality to the server</li>
+        <li>Preserving the real-time data communication between the database and client through the server</li>
+      </ol>
+    </p>
+    <p>
+      Since Firebase already offers real-time data streams, your server will always be up to date with the database. However the client will have no clue about the updates unless the server also has real-time data stream with the client. So we recommend that you implement sockets between the server and the client
+    </p>
+    <p>
+      Example flow of data:
+      <ol>
+        <li>The client's location updates</li>
+        <li>The immediatelly notifies the server (via post request)</li>
+        <li>The server then updates the database</li>
+        <li>Firebase (due to real-time capability) sends the new data back to server</li>
+        <li>The server (using sockets) notifies all the clients who are currently logged in, and the map updates in real-time</li>
+      </ol>
+    </p>
+  </div>
+  <!-- sidebar -->
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Intro</h3>
+    <ul>
+      <li>
+        <a href="gettingStarted.html">Getting Started</a>
+      </li>
+      <li>
+        <a href="installation.html">Installing the dependencies</a>
+      </li>
+      <li>
+        <a href="setUpFirebase.html">Set up Firebase database (Google product)</a>
+      </li>
+      <li>
+        <a href="runFromLocalServer.html">Running the app from local https server</a>
+      </li>
+      <li>
+        <a href="httpsAndSSL.html">Note about https and SSL certificate</a>
+      </li>
+      <li>
+        <a href="createSSLcertificate.html">How to create your own SSL certificate</a>
+      </li>
+      <li>
+        <a href="recomendations.html">Recomendations for future work</a>
+      </li>
+      <li>
+        <a href="howToUseJSDoc.html">How to use JSDoc to write documentation from scratch</a>
+      </li>
+    </ul>
+    <h3>Methods</h3>
+    <ul>
+      <li>
+        <a href="$rootScope.attemptSignup.html">attemptSignup</a>
+      </li>
+      <li>
+        <a href="angular_module.myApp.html">myApp</a>
+      </li>
+      <li>
+        <a href="autofocus.html">autofocus</a>
+      </li>
+      <li>
+        <a href="chatterboxCtrl.html">chatterboxCtrl</a>
+      </li>
+      <li>
+        <a href="checkUserStatus.html">checkUserStatus</a>
+      </li>
+      <li>
+        <a href="config.html">config</a>
+      </li>
+      <li>
+        <a href="databaseAndAuth.html">databaseAndAuth</a>
+      </li>
+      <li>
+        <a href="escapeEmailAddress.html">escapeEmailAddress</a>
+      </li>
+      <li>
+        <a href="goHome.html">goHome</a>
+      </li>
+      <li>
+        <a href="initializeMap.html">initializeMap</a>
+      </li>
+      <li>
+        <a href="privateMessages.html">privateMessages</a>
+      </li>
+      <li>
+        <a href="registerLogInLogOut.html">registerLogInLogOut</a>
+      </li>
+      <li>
+        <a href="routeProvider.html">routeProvider</a>
+      </li>
+      <li>
+        <a href="runListeners.html">runListeners</a>
+      </li>
+      <li>
+        <a href="sendMessage.html">sendMessage</a>
+      </li>
+      <li>
+        <a href="watchCurrentUserLocation.html">watchCurrentUserLocation</a>
+      </li>
+      <li>
+        <a href="window.checkLogin.html">checkLogin</a>
+      </li>
+    </ul>
+    <h3>Global</h3>
+    <ul>
+      <li>
+        <a href="global.html#fetchMessages">fetchMessages</a>
+      </li>
+      <li>
+        <a href="global.html#getUsers">getUsers</a>
+      </li>
+      <li>
+        <a href="global.html#showProfile">showProfile</a>
+      </li>
+    </ul>
+  </nav><br class="clear">
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 06 2017 13:38:07 GMT-0800 (PST)
+  </footer>
+  <script>
+  prettyPrint(); 
+  </script> 
+  <script src="scripts/linenumber.js">
+  </script>
+</body>
+</html>

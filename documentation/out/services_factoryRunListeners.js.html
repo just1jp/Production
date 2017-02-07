@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/factoryRunListeners.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/factoryRunListeners.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * @class runListeners
+  * @description Factory that sets up the database listeners. Firebase enables real-time updates any time database entries change, and the listeners in this factory get notified. The updated data is then routed to appropriate controllers (e.g. for rendering new user position on the map). 
+  @returns {Object} Returns the factory object ('listener') with all methods to be used by controllers
+*/
+angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootScope) {
+  var listener = {};
+  /**
+    * @function childChanged
+    * @memberOf runListeners
+    * @description Listens for updates in any single user data in the database (child_changed). On change, $rootscope broadcasts the event along with the snapshot of the new data that needs to be rendered or updated on the client's screen
+  */
+  listener.childChanged = function () {
+    databaseAndAuth.database.ref('users').on('child_changed', function(snapshot) {
+      //add the changed database item to our databaseAndAuth.users object
+      //so it can be accessed accross all controllers 
+      databaseAndAuth.users[snapshot.key] = snapshot.val();
+      $rootScope.$broadcast('user:updatedOrAdded', [snapshot.key, snapshot.val()]);
+      console.log('child changed', snapshot.val());
+    });
+  };
+
+  /**
+    * @function childAdded
+    * @memberOf runListeners
+    * @description Listens for new user entries (e.g. when a new user sets up an account and gets added to the database). 
+  */
+  listener.childAdded = function () {
+    databaseAndAuth.database.ref('users').on('child_added', function(snapshot) {
+      databaseAndAuth.users[snapshot.key] = snapshot.val();
+      $rootScope.$broadcast('user:updatedOrAdded', [snapshot.key, snapshot.val()]);
+      console.log('child added', databaseAndAuth.users);
+    });
+  };
+  /**
+    * @function childRemoved
+    * @memberOf runListeners
+    * @description Listens for deletions (e.g. when user logs out and their coordinates are removed from the database)
+  */
+  listener.childRemoved = function () {
+    databaseAndAuth.database.ref('users').on('child_removed', function(snapshot) {
+      databaseAndAuth.users[snapshot.key] = snapshot.val();
+      $rootScope.$broadcast('user:deleted', [snapshot.key, snapshot.val()]);
+    });
+  };
+  return listener;
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Intro</h3>
+    <ul>
+      <li>
+        <a href="gettingStarted.html">Getting Started</a>
+      </li>
+      <li>
+        <a href="installation.html">Installing the dependencies</a>
+      </li>
+      <li>
+        <a href="setUpFirebase.html">Set up Firebase database (Google product)</a>
+      </li>
+      <li>
+        <a href="runFromLocalServer.html">Running the app from local https server</a>
+      </li>
+      <li>
+        <a href="httpsAndSSL.html">Note about https and SSL certificate</a>
+      </li>
+      <li>
+        <a href="createSSLcertificate.html">How to create your own SSL certificate</a>
+      </li>
+      <li>
+        <a href="recomendations.html">Recomendations for future work</a>
+      </li>
+      <li>
+        <a href="howToUseJSDoc.html">How to use JSDoc to write documentation from scratch</a>
+      </li>
+    </ul>
+    <h3>Methods</h3>
+    <ul>
+      <li>
+        <a href="$rootScope.attemptSignup.html">attemptSignup</a>
+      </li>
+      <li>
+        <a href="angular_module.myApp.html">myApp</a>
+      </li>
+      <li>
+        <a href="autofocus.html">autofocus</a>
+      </li>
+      <li>
+        <a href="chatterboxCtrl.html">chatterboxCtrl</a>
+      </li>
+      <li>
+        <a href="checkUserStatus.html">checkUserStatus</a>
+      </li>
+      <li>
+        <a href="config.html">config</a>
+      </li>
+      <li>
+        <a href="databaseAndAuth.html">databaseAndAuth</a>
+      </li>
+      <li>
+        <a href="escapeEmailAddress.html">escapeEmailAddress</a>
+      </li>
+      <li>
+        <a href="goHome.html">goHome</a>
+      </li>
+      <li>
+        <a href="initializeMap.html">initializeMap</a>
+      </li>
+      <li>
+        <a href="privateMessages.html">privateMessages</a>
+      </li>
+      <li>
+        <a href="registerLogInLogOut.html">registerLogInLogOut</a>
+      </li>
+      <li>
+        <a href="routeProvider.html">routeProvider</a>
+      </li>
+      <li>
+        <a href="runListeners.html">runListeners</a>
+      </li>
+      <li>
+        <a href="sendMessage.html">sendMessage</a>
+      </li>
+      <li>
+        <a href="watchCurrentUserLocation.html">watchCurrentUserLocation</a>
+      </li>
+      <li>
+        <a href="window.checkLogin.html">checkLogin</a>
+      </li>
+    </ul>
+    <h3>Global</h3>
+    <ul>
+      <li>
+        <a href="global.html#fetchMessages">fetchMessages</a>
+      </li>
+      <li>
+        <a href="global.html#getUsers">getUsers</a>
+      </li>
+      <li>
+        <a href="global.html#showProfile">showProfile</a>
+      </li>
+    </ul>
+  </nav><br class="clear">
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 06 2017 20:43:41 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

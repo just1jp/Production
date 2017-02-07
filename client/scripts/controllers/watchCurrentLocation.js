@@ -1,8 +1,13 @@
-//watch for current user location
+/**
+  * @class watchCurrentUserLocation
+  * @description Controller for geolocation. Monitors user's location. Uses browser built-in method 'navigator.geolocation.watchPosition' that triggers every time there is a change in user's location (triggered when $rootScope broadcasts that user is currently logged in). 
+*/
 angular.module('myApp').controller('watchCurrentUserLocation', function($rootScope, $scope, databaseAndAuth) {
-  //when we get unique user id (upon login or page refresh with a user currently loged in)
-  //we attach the unique id to scope, so later we can use to update the database when 
-  //html5 geolocation successfuly finds the user location (see below)
+  /**
+    * @function success
+    * @memberOf watchCurrentUserLocation
+    * @description Triggers when change in user location is detected. Sends the user's location to the database (based on the user's unique ID)
+  */
   var success = function(response) {
     console.log('success! ', response.coords);
     databaseAndAuth.database.ref('users/' + $scope.userId + '/coordinates').update({
@@ -10,10 +15,19 @@ angular.module('myApp').controller('watchCurrentUserLocation', function($rootSco
       longitude: response.coords.longitude
     });
   };
+  /**
+    * @function error
+    * @memberOf watchCurrentUserLocation
+    * @description Gets invoked if browser is unable to retrieve/watch the user location
+  */
   var error = function(item) {
     console.log('error! ', item);
   }
-  //params for watchPosition
+  /**
+    * @params options
+    * @memberOf watchCurrentUserLocation
+    * @description Parameters for navigator.geolocation.watchPosition() that enable high accuracy mode (uses GPS, cellular tower signals, and WiFi, depending on avialability of each). It also accepts location information regardles of its age (Inifnity)
+  */
   var options = {
     enableHighAccuracy: true,
     timeout: 1,

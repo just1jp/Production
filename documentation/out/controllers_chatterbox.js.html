@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/chatterbox.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/chatterbox.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * @class chatterboxCtrl
+  * @description Controller for chat. Makes use of databaseAndAuth factory in order to retrieve/update chat messages from the databse.
+*/
+angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope, $location, databaseAndAuth) {
+  console.log('inside chatterboxCtrl');
+
+  var database = firebase.database();
+
+  $scope.messageObj = {};
+  /**
+    * @function sendMessage
+    * @memberOf chatterboxCtrl
+    * @description Gets the user email and username from the database. Takes user input ($scope.text) and updates the database with that input. Each input is added to the user that submitted it.
+  */
+  $scope.sendMessage = function(userId, text) {
+    var chatEmail = databaseAndAuth.auth.currentUser.email;
+    var chatUsername = chatEmail.slice(0, chatEmail.indexOf('@'));
+    
+    var chatId = +new Date(Date()); //use time in milliseconds for chatId
+
+    database.ref('chats/' + chatId).set({
+      username: chatUsername,
+      text: $scope.text,
+      createdAt: Date()
+    });
+
+    $scope.text = '';
+  };
+  /**
+    * @function fetchMessage
+    * @memberOf chatterboxCtrl
+    * @description Gets all the chats from the database, attaches them to the scope, and then renders the updated scope ($scope.apply())
+  */
+  $scope.fetchMessage = function() {
+    
+    var ref = database.ref('chats');
+    
+    ref.limitToLast(9).on('value', function(chat) {
+      $scope.messageObj = chat.val();
+      $scope.$apply();
+    });
+
+  };
+
+  $scope.hidePartial = function() {
+    $rootScope.showMessages = false;
+  }
+
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Intro</h3>
+    <ul>
+      <li>
+        <a href="gettingStarted.html">Getting Started</a>
+      </li>
+      <li>
+        <a href="installation.html">Installing the dependencies</a>
+      </li>
+      <li>
+        <a href="setUpFirebase.html">Set up Firebase database (Google product)</a>
+      </li>
+      <li>
+        <a href="runFromLocalServer.html">Running the app from local https server</a>
+      </li>
+      <li>
+        <a href="httpsAndSSL.html">Note about https and SSL certificate</a>
+      </li>
+      <li>
+        <a href="createSSLcertificate.html">How to create your own SSL certificate</a>
+      </li>
+      <li>
+        <a href="recomendations.html">Recomendations for future work</a>
+      </li>
+      <li>
+        <a href="howToUseJSDoc.html">How to use JSDoc to write documentation from scratch</a>
+      </li>
+    </ul>
+    <h3>Methods</h3>
+    <ul>
+      <li>
+        <a href="$rootScope.attemptSignup.html">attemptSignup</a>
+      </li>
+      <li>
+        <a href="angular_module.myApp.html">myApp</a>
+      </li>
+      <li>
+        <a href="autofocus.html">autofocus</a>
+      </li>
+      <li>
+        <a href="chatterboxCtrl.html">chatterboxCtrl</a>
+      </li>
+      <li>
+        <a href="checkUserStatus.html">checkUserStatus</a>
+      </li>
+      <li>
+        <a href="config.html">config</a>
+      </li>
+      <li>
+        <a href="databaseAndAuth.html">databaseAndAuth</a>
+      </li>
+      <li>
+        <a href="escapeEmailAddress.html">escapeEmailAddress</a>
+      </li>
+      <li>
+        <a href="goHome.html">goHome</a>
+      </li>
+      <li>
+        <a href="initializeMap.html">initializeMap</a>
+      </li>
+      <li>
+        <a href="privateMessages.html">privateMessages</a>
+      </li>
+      <li>
+        <a href="registerLogInLogOut.html">registerLogInLogOut</a>
+      </li>
+      <li>
+        <a href="routeProvider.html">routeProvider</a>
+      </li>
+      <li>
+        <a href="runListeners.html">runListeners</a>
+      </li>
+      <li>
+        <a href="sendMessage.html">sendMessage</a>
+      </li>
+      <li>
+        <a href="watchCurrentUserLocation.html">watchCurrentUserLocation</a>
+      </li>
+      <li>
+        <a href="window.checkLogin.html">checkLogin</a>
+      </li>
+    </ul>
+    <h3>Global</h3>
+    <ul>
+      <li>
+        <a href="global.html#fetchMessages">fetchMessages</a>
+      </li>
+      <li>
+        <a href="global.html#getUsers">getUsers</a>
+      </li>
+      <li>
+        <a href="global.html#showProfile">showProfile</a>
+      </li>
+    </ul>
+  </nav><br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 06 2017 20:43:41 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

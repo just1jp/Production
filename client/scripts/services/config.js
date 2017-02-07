@@ -1,11 +1,15 @@
+/**
+  * @class config
+  * @description Configuration file that sets up the connection with the Firebase database. It also sets up angular router.
+  */
 angular.module('myApp').config(function($routeProvider, $locationProvider, $httpProvider) {
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyAhV8qputTImKp3Z5DwwpUmT8lyNRktCfc",
-    authDomain: "palfinder-6d55f.firebaseapp.com",
-    databaseURL: "https://palfinder-6d55f.firebaseio.com",
-    storageBucket: "palfinder-6d55f.appspot.com",
-    messagingSenderId: "673459070337"
+    apiKey: "<API_KEY>",
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+    storageBucket: "<BUCKET>.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID"
   };
   firebase.initializeApp(config);
 
@@ -13,7 +17,10 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
     enabled: true,
     requireBase: false
   });
-
+  /**
+    * @class routeProvider
+    * @description Angular router
+    */
   $routeProvider
   .when('/signup', {
             templateUrl: '../../partials/signup.html',
@@ -33,13 +40,28 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
   })
 
 })
+/**
+  * @class run (anonymous function)
+  * @description Does not allow non-logged in users to see restricted pages
+  */
  .run(function($rootScope, $location, firebase) {
-
+      /**
+        * @class checkUserStatus
+        * @description Storing user status in local storage. Speeds up the routing process because the app knows instantly if user is logged in or not (doesn't have to consult database every time)
+        */
       if (localStorage.getItem('user')){
         console.log(localStorage.getItem('user'));
         $rootScope.loggedIn = true;
       }
+      /**
+        * @class $rootScope.attemptSignup 
+        * @description variable that determines if user clicked on "signup" button
+      */
     $rootScope.attemptSignup = false;
+      /**
+        * @class window.checkLogin
+        * @description Determines which page the user is allowed to see based on their login status (logged in or not). Sets an inital variable on the global 'window' object. This way the app knows if user is logged in or not, and based on that routes them to the appropriate web page. $location.path sets the url to the desired web page - built in angular method to route the client to a web page. See Angular docs for more information about $location: https://docs.angularjs.org/api/ng/service/$location
+      */
       window.checkLogin = function () {
         console.log('check login');
         console.log($rootScope.loggedIn);
@@ -63,5 +85,5 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
       }
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
       window.checkLogin();
-      });
+    });
   });

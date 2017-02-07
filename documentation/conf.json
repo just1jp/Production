@@ -1,0 +1,29 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "source":{
+    "include":[ 
+      "../client/scripts/app.js",
+      "../client/scripts/controllers/chatterbox.js",
+      "../client/scripts/controllers/initializeMap.js",
+      "../client/scripts/controllers/privateMessages.js",
+      "../client/scripts/controllers/registerLoginLogout.js",
+      "../client/scripts/controllers/watchCurrentLocation.js",
+      "../client/scripts/services/config.js",
+      "../client/scripts/services/customDirectives.js",
+      "../client/scripts/services/factoryDatabaseAndAuth.js",
+      "../client/scripts/services/factoryRunListeners.js",
+      "../server/server.js"
+    ],
+    "exclude":["client/styles/style.css"],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [],
+  "templates": {
+      "cleverLinks": false,
+      "monospaceLinks": false
+  }
+}

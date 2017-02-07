@@ -1,10 +1,18 @@
+/**
+  * @class chatterboxCtrl
+  * @description Controller for chat. Makes use of databaseAndAuth factory in order to retrieve/update chat messages from the databse.
+*/
 angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope, $location, databaseAndAuth) {
   console.log('inside chatterboxCtrl');
 
   var database = firebase.database();
 
   $scope.messageObj = {};
-  
+  /**
+    * @function sendMessage
+    * @memberOf chatterboxCtrl
+    * @description Gets the user email and username from the database. Takes user input ($scope.text) and updates the database with that input. Each input is added to the user that submitted it.
+  */
   $scope.sendMessage = function(userId, text) {
     var chatEmail = databaseAndAuth.auth.currentUser.email;
     var chatUsername = chatEmail.slice(0, chatEmail.indexOf('@'));
@@ -19,7 +27,11 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
 
     $scope.text = '';
   };
-
+  /**
+    * @function fetchMessage
+    * @memberOf chatterboxCtrl
+    * @description Gets all the chats from the database, attaches them to the scope, and then renders the updated scope ($scope.apply())
+  */
   $scope.fetchMessage = function() {
     
     var ref = database.ref('chats');
