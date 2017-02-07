@@ -1,6 +1,6 @@
 #PalFinder
 
-App that alows you to see your friends on Google Map message them in real time.
+App that alows you to see your friends on Google Map and message them in real time.
 
 ##Getting started:
 
