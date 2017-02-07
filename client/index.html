@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8">
+    <title>PalFinder</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <!-- load the dependencies -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
+    <!-- load the app scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/config.js"></script>
+    <script src="scripts/services/factoryDatabaseAndAuth.js"></script>
+    <script src="scripts/services/factoryRunListeners.js"></script>
+    <script src="scripts/services/customDirectives.js"></script>
+    <script src="scripts/controllers/registerLoginLogout.js"></script>
+    <script src="scripts/controllers/initializeMap.js"></script>
+    <script src="scripts/controllers/watchCurrentLocation.js"></script>
+    <script src="scripts/controllers/chatterbox.js"></script>
+    <script src="scripts/controllers/privateMessages.js"></script>
+  </head>
+
+  <body>
+    <div ng-view></div>
+  </body>
+
+</html>

@@ -1,0 +1,1 @@
+angular.module('myApp', ['ngRoute', 'firebase', 'ngGeolocation', 'ngMap']);

@@ -1,0 +1,59 @@
+<div class="logout" ng-controller="registerLogInLogOut">
+  <form>
+    <div class="form-group">
+      <button class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
+      <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+      <br>
+      <div>{{badLogin}}</div>
+    </div>
+  </form>
+</div>
+
+<div ng-controller="initializeMap" class="map-wrapper">
+  <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
+    <directions suppress-markers="true"></directions>
+    <div ng-repeat="(key, value) in userLocations" >
+      <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
+      <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
+        <p class="user-label">{{value.username}}</p>
+      </custom-marker>
+    </div>
+  </ng-map>
+</div>
+
+<div class="icon-message" ng-controller="registerLogInLogOut">
+    <img ng-show="loggedIn" src="../images/icon-message.png" ng-click="showPartial()">
+</div> 
+
+<div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
+
+  <div class="panel-body chat-window" >
+    <div style="height: 80%">
+      <div ng-repeat="message in messageObj" style="margin: 10px 0;">
+        <b>{{message.username}}</b>: {{message.text}}
+      </div>
+    </div>  
+    
+    <div class="chatCloseButton">
+      <a href="" ng-click="hidePartial()">Close</a>
+    </div>
+
+    <div class="input-field">
+      <form>
+        <input type="text" size="500" ng-model="text" style="width: 95%" autofocus /><br/>
+        <button type="submit" ng-click="sendMessage()" style="visibility: hidden">Send Message</button>
+      </form>
+    <div>
+
+  </div>
+
+</div>
+
+
+<div ng-controller="watchCurrentUserLocation"></div>
+
+<div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div>
+
+
+
+    
