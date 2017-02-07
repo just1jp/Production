@@ -2,10 +2,10 @@
 
 App that alows you to see your friends on Google Map message them in real time.
 
-#Documentation:
-To get started, visit the documentation page at: 
+##Getting started:
+**To get started, visit the documentation page at: https://palfinder.github.io/ **
 
-**Project source can be downloaded from https://github.com/PalFinder/Production
+**Project source can be downloaded from https://github.com/PalFinder/Production**
 
 ##Authors
 
