@@ -9,7 +9,7 @@ App that alows you to see your friends on Google Map message them in real time.
 
 ##Authors
 
-Anukul Shenoy  
+Anukul Shenoy 
 Aprajita Jain  
 Dan Svorcan  
 Hanyen Widjaja
