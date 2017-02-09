@@ -26,9 +26,6 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
     });
 
     $scope.text = '';
-
-    console.log('calling foursquare.getFoursquareData()');
-    // foursquare.getFoursquareData();
   };
   /**
     * @function fetchMessage

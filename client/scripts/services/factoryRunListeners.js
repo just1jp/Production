@@ -5,6 +5,7 @@
 */
 angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootScope, foursquare) {
   var listener = {};
+  $rootScope.userCoordinates = [];
   /**
     * @function childChanged
     * @memberOf runListeners
