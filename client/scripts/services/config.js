@@ -2,16 +2,10 @@
   * @class config
   * @description Configuration file that sets up the connection with the Firebase database. It also sets up angular router.
   */
-angular.module('myApp').config(function($routeProvider, $locationProvider, $httpProvider) {
+angular.module('myApp').config(function($routeProvider, $locationProvider, $httpProvider, keysProvider) {
   // Initialize Firebase
-  var config = {
-    apiKey: "<API_KEY>",
-    authDomain: "<PROJECT_ID>.firebaseapp.com",
-    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-    storageBucket: "<BUCKET>.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID"
-  };
-  firebase.initializeApp(config);
+
+  firebase.initializeApp(keysProvider.$get().config);
 
   $locationProvider.html5Mode({
     enabled: true,

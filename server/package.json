@@ -13,7 +13,11 @@
     "jsdoc": "^3.4.3"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.1",
-    "forever": "^0.15.3"
+    "forever": "^0.15.3",
+    "foursquarevenues": "^3.0.0",
+    "morgan": "^1.8.0",
+    "querystring": "^0.2.0"
   }
 }
