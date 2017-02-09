@@ -17,7 +17,6 @@ angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootS
       //so it can be accessed accross all controllers 
       databaseAndAuth.users[snapshot.key] = snapshot.val();
       $rootScope.$broadcast('user:updatedOrAdded', [snapshot.key, snapshot.val()]);
-      console.log('child changed', snapshot.val());
     });
   };
 
@@ -30,8 +29,10 @@ angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootS
     databaseAndAuth.database.ref('users').on('child_added', function(snapshot) {
       databaseAndAuth.users[snapshot.key] = snapshot.val();
       $rootScope.$broadcast('user:updatedOrAdded', [snapshot.key, snapshot.val()]);
-      console.log('child added', databaseAndAuth.users);
-      foursquare.getUserLocationData();
+
+      // When a new user is added re-grab location data
+      foursquare.getFoursquareData();
+      
     });
   };
   /**

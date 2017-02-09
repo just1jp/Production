@@ -9,7 +9,7 @@ angular.module('myApp').controller('watchCurrentUserLocation', function($rootSco
     * @description Triggers when change in user location is detected. Sends the user's location to the database (based on the user's unique ID)
   */
   var success = function(response) {
-    console.log('success! ', response.coords);
+    console.log('successfully watching your location ', response.coords);
     databaseAndAuth.database.ref('users/' + $scope.userId + '/coordinates').update({
       latitude: response.coords.latitude,
       longitude: response.coords.longitude
