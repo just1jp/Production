@@ -99,7 +99,6 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
   */
   databaseAndAuth.auth.onAuthStateChanged(function(databaseUser) {
     if (databaseUser) {
-      console.log('calling this function');
       localStorage.setItem('user', databaseUser);
       runListeners.childChanged();
       runListeners.childAdded();

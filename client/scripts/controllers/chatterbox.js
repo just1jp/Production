@@ -3,7 +3,6 @@
   * @description Controller for chat. Makes use of databaseAndAuth factory in order to retrieve/update chat messages from the databse.
 */
 angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope, $location, databaseAndAuth, foursquare) {
-  console.log('inside chatterboxCtrl');
 
   var database = firebase.database();
 
