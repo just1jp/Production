@@ -1,21 +1,19 @@
 <!-- Toolbar --> 
-<md-toolbar layout="row" class="md-primary md-hue-1" ng-controller="registerLogInLogOut">
+<md-toolbar layout="row" class="md-whiteframe-z2 md-primary md-hue-3" ng-controller="registerLogInLogOut">
   <span class="title">
     <h1> CrissCross </h1>
   </span>
-  <form class="logout">
-<!--       <span class="form-group"> -->
-    <button id="btnProfile" class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
-    <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
-    <span>{{badLogin}}</span>
-<!--       </span> -->
-  </form>
+  <span class="menu-group">
+    <a href="#" class="menu-link" ng-click="showProfile()" ng-show="loggedIn">Profile</a>
+    <a href="#" class="menu-link" ng-click="logOut()" ng-show="loggedIn">Logout</a>
+  </span>
+    <!-- <span>{{badLogin}}</span> -->
 </md-toolbar>
 
 <div flex layout="row" class="content-div">
 
   <!-- Sidenav Container (Container #3 )-->
-  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
     <md-list>
 
       <!-- List item #1 -->
