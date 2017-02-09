@@ -13,4 +13,4 @@ lib/
 server/client-cert.pem
 server/client-key.pem
 server/client.csr
-scripts/services/factoryKeys.js
+clients/scripts/services/factoryKeys.js
