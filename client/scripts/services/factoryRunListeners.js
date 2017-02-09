@@ -3,7 +3,7 @@
   * @description Factory that sets up the database listeners. Firebase enables real-time updates any time database entries change, and the listeners in this factory get notified. The updated data is then routed to appropriate controllers (e.g. for rendering new user position on the map). 
   @returns {Object} Returns the factory object ('listener') with all methods to be used by controllers
 */
-angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootScope) {
+angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootScope, foursquare) {
   var listener = {};
   /**
     * @function childChanged
@@ -30,6 +30,7 @@ angular.module('myApp').factory('runListeners', function(databaseAndAuth, $rootS
       databaseAndAuth.users[snapshot.key] = snapshot.val();
       $rootScope.$broadcast('user:updatedOrAdded', [snapshot.key, snapshot.val()]);
       console.log('child added', databaseAndAuth.users);
+      foursquare.getUserLocationData();
     });
   };
   /**

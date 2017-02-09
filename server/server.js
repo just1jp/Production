@@ -3,6 +3,10 @@ var path = require('path');
 var https = require('https');
 var app = express();
 var fs = require('fs');
+var router = require('./routes');
+
+app.use(require('morgan')('combined'));
+app.use(require('body-parser').urlencoded({ extended: true }));
 
 var options = {
   cert: fs.readFileSync('client-cert.pem'),
@@ -15,7 +19,10 @@ var options = {
 // app.use('/partials', express.static(path.join(__dirname, '/../client/partials')));
 // app.use('/images', express.static(path.join(__dirname, '/../client/images')));
 
+app.use('', router);
+
 app.use(express.static(__dirname + '/../client'));
+
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
