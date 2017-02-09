@@ -1,9 +1,9 @@
 html,
 body {
-   height:100%;
-   width:100%;
-   padding:0;
-   margin:0;
+ height:100%;
+ width:100%;
+ padding:0;
+ margin:0;
 }
 
 /*#map {
@@ -12,8 +12,8 @@ body {
 }*/
 
 ng-map {
-    height:100%;
-    width: 100%;
+  height:100%;
+  width: 100%;
 }
 
 .container {
@@ -30,19 +30,19 @@ ng-map {
 }
 
 .panel {
-    position: absolute;
-    bottom: 0;
-    z-index: 1;
-    margin-bottom: 0px;
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  margin-bottom: 0px;
+  width: 100%;
 }
 
 .panel-body {
-    padding: 5px 15px;
+  padding: 5px 15px;
 }
 
 .panel-transparent {
-    background: none;
+  background: none;
 }
 
 .icon-message {
@@ -57,27 +57,27 @@ ng-map {
 }
 
 .login {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    padding: 10px 10px 0 10px;
-    width: 100%;
-    text-align: left;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 10px 10px 0 10px;
+  width: 100%;
+  text-align: left;
 }
 
 .logout {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    padding: 10px 10px 0 10px;
-    width: 100%;
-    text-align: right;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+/*  padding: 10px 10px 0 10px;*/
+  width: 100%;
+  text-align: right;
 }
 
 .login input {
-    height: 40px;
-    padding-left: 10px;
-    margin-right: 5px;
+  height: 40px;
+  padding-left: 10px;
+  margin-right: 5px;
 }
 
 /*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
@@ -93,24 +93,24 @@ ng-map {
 }*/
 
 .chat-window {
-    text-align: left;
-    height: 400px;
-    background-color: #dcdcdc;
+  text-align: left;
+  height: 400px;
+  background-color: #dcdcdc;
 }
 
 .input-field {
-    float:bottom;
+  float:bottom;
 }
 
 .input-field textarea {
-    width: 90%;
+  width: 90%;
 }
 
 .chatCloseButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px 20px 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 20px 0 0;
 }
 
 .user-label {
@@ -187,7 +187,7 @@ hr{
   user-select: none;
   cursor: default;
   border-radius:0;
-  background:#43A6EB;
+  background: rgb(121,134,203);
   height: 55px;
   margin-bottom:10px;
 }
