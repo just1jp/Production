@@ -44,7 +44,6 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
         * @description Storing user status in local storage. Speeds up the routing process because the app knows instantly if user is logged in or not (doesn't have to consult database every time)
         */
       if (localStorage.getItem('user')){
-        console.log(localStorage.getItem('user'));
         $rootScope.loggedIn = true;
       }
       /**
@@ -57,8 +56,7 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
         * @description Determines which page the user is allowed to see based on their login status (logged in or not). Sets an inital variable on the global 'window' object. This way the app knows if user is logged in or not, and based on that routes them to the appropriate web page. $location.path sets the url to the desired web page - built in angular method to route the client to a web page. See Angular docs for more information about $location: https://docs.angularjs.org/api/ng/service/$location
       */
       window.checkLogin = function () {
-        console.log('check login');
-        console.log($rootScope.loggedIn);
+        console.log('check login ', $rootScope.loggedIn);
         if ($rootScope.accessProfile === true) {
           console.log('accessing profile');
           $location.path('/profile');

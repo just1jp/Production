@@ -13,7 +13,9 @@ angular.module('myApp').factory('coordinateCalc', function($http, databaseAndAut
         snapshot.forEach(user => {
           var key = user.key;
           var userData = user.val();
-          userLocations.push(userData.coordinates);
+          if ( userData.coordinates ) {
+            userLocations.push(userData.coordinates);
+          }
         });
 
         return userLocations;
