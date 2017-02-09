@@ -30,10 +30,10 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
         console.log('foursquare response object ', result.data.response);
         var places = result.data.response.groups[0].items;
         
-        places.forEach(place => {
-          // Do something with each place if you want...
-
-        });
+        // places.forEach(place => {
+        //   // Do something with each place if you want...
+        // });
+        return places;
 
       });
 
