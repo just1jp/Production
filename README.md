@@ -1,6 +1,6 @@
 #CrissCross
 
-App that alows you to see your friends on Google Map and message them in real time.
+See your friends on a map and chat with them in real time to decide where to meet up.
 
 ##Getting started:
 
