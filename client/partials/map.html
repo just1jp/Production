@@ -1,15 +1,77 @@
-<div class="logout" ng-controller="registerLogInLogOut">
-  <form>
-    <div class="form-group">
-      <button class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
-      <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
-      <br>
-      <div>{{badLogin}}</div>
+<!-- Toolbar --> 
+<md-toolbar layout="row" class="md-accent">
+  <h1>CrissCross</h1>
+</md-toolbar>
+
+<div flex layout="row">
+
+  <!-- Sidenav Container (Container #3 )-->
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+    <md-list>
+
+      <!-- List item #1 -->
+      <md-list-item >
+        <md-button>
+          <md-icon md-svg-src="./assets/svg/avatar-1.svg" class="avatar"></md-icon>
+          Lia Luogo
+        </md-button>
+      </md-list-item>
+
+      <!-- List item #2 -->
+      <md-list-item >
+        <md-button>
+         <md-icon md-svg-src="./assets/svg/avatar-4.svg" class="avatar"></md-icon>
+          Lawrence Ray
+        </md-button>
+      </md-list-item>
+
+      <!-- Generate list item for each location result -->
+<!--       <md-list-item ng-repeat="u in ul.users">
+        <md-button ng-click="ul.selectUser(u)" ng-class="{'selected' : u === ul.selected }">
+          <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
+          {{u.name}}
+        </md-button>
+      </md-list-item> -->
+
+    </md-list>
+  </md-sidenav>
+
+  <!-- Map Container (Container #4) -->
+  <md-content flex id="content">
+
+    <div class="logout" ng-controller="registerLogInLogOut">
+      <form>
+        <div class="form-group">
+          <button class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
+          <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+          <br>
+          <div>{{badLogin}}</div>
+        </div>
+      </form>
     </div>
-  </form>
+
+    <div ng-controller="initializeMap" class="map-wrapper">
+      <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
+        <shape id="circle" name="circle" centered="true" 
+          center="{{avgLat}} {{avgLon}}"
+          stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
+          radius={{radius}} editable="true" >
+        </shape>
+        <directions suppress-markers="true"></directions>
+        <div ng-repeat="(key, value) in userLocations" >
+          <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
+          <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
+            <p class="user-label">{{value.username}}</p>
+          </custom-marker>
+        </div>
+      </ng-map>
+    </div>
+  </md-content>
+
 </div>
 
-<div ng-controller="initializeMap" class="map-wrapper">
+
+<!-- <div ng-controller="initializeMap" class="map-wrapper">
   <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
     <shape id="circle" name="circle" centered="true" 
       center="{{avgLat}} {{avgLon}}"
@@ -57,7 +119,7 @@
 
 <div ng-controller="watchCurrentUserLocation"></div>
 
-<div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div>
+<div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div> -->
 
 
 
