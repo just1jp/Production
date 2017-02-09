@@ -1,6 +1,17 @@
 <!-- Toolbar --> 
-<md-toolbar layout="row" class="md-accent">
-  <h1>CrissCross</h1>
+<md-toolbar layout="row" class="md-primary md-hue-1" ng-controller="registerLogInLogOut">
+  <span class="title">
+    <h1> CrissCross </h1>
+  </span>
+<!--   <span class="logout" > -->
+    <form class="logout">
+<!--       <span class="form-group"> -->
+        <button id="btnProfile" class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
+        <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+        <span>{{badLogin}}</span>
+<!--       </span> -->
+    </form>
+<!--   </span> -->
 </md-toolbar>
 
 <div flex layout="row">
@@ -39,7 +50,7 @@
   <!-- Map Container (Container #4) -->
   <md-content flex id="content">
 
-    <div class="logout" ng-controller="registerLogInLogOut">
+<!--     <div class="logout" ng-controller="registerLogInLogOut">
       <form>
         <div class="form-group">
           <button class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
@@ -48,7 +59,7 @@
           <div>{{badLogin}}</div>
         </div>
       </form>
-    </div>
+    </div> -->
 
     <div ng-controller="initializeMap" class="map-wrapper">
       <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
