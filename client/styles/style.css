@@ -51,14 +51,12 @@ ng-map {
 }
 
 .icon-message {
-
   position: absolute;
   bottom: 0;
   z-index: 1;
   margin-bottom: 20px;
   width: 90%;
   text-align: center;
-  
 }
 
 .login {
@@ -72,9 +70,7 @@ ng-map {
 
 .logout {
   position: absolute;
-  top: 0;
   z-index: 1;
-/*  padding: 10px 10px 0 10px;*/
   width: 100%;
   text-align: right;
 }
@@ -83,6 +79,10 @@ ng-map {
   height: 40px;
   padding-left: 10px;
   margin-right: 5px;
+}
+
+.title {
+  margin: 5px 25px 5px 25px;
 }
 
 /*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
@@ -191,6 +191,27 @@ hr{
   background: rgb(121,134,203);
   height: 55px;
   margin-bottom:10px;
+}
+
+.menu-link {
+  padding: 5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.menu-link:hover,
+.menu-link:active,
+.menu-link:focus {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+
+.menu-group {
+  position: absolute;
+  top: 15px;
+  right: 25px;
 }
 
 /*
@@ -306,4 +327,8 @@ hr{
 .forgot-password:active,
 .forgot-password:focus{
   color: rgb(12, 97, 33);
+}
+
+.toolbar {
+  padding-left: 100px;
 }
