@@ -29,10 +29,11 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
       .then( result => {
         console.log('foursquare response object ', result.data.response);
         var places = result.data.response.groups[0].items;
-        
-        places.forEach(place => {
-          // Do something with each place if you want...
+        var placeId = 0;
 
+        places.forEach(place => {
+          databaseAndAuth.database.ref('/foursquare_results').child('location' + placeId).set(place)
+          placeId++;
         });
 
       });

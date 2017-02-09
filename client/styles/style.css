@@ -114,10 +114,15 @@ ng-map {
 }
 
 .user-label {
-    margin-bottom: 30px;
-    font-size: 20px;
-    color: #fff;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.location-label {
+  color: #9e0000;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 }
 
 .map-wrapper {
