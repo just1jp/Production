@@ -14,29 +14,29 @@
 
   <!-- Sidenav Container (Container #3 )-->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
-    <md-list>
+    <md-list ng-controller="placesCtrl">
 
       <!-- List item #1 -->
-      <md-list-item >
+<!--       <md-list-item >
         <md-button>
           Best Food Ever
         </md-button>
-      </md-list-item>
+      </md-list-item> -->
 
       <!-- List item #2 -->
-      <md-list-item >
+<!--       <md-list-item >
         <md-button>
           Also Great Food
         </md-button>
-      </md-list-item>
+      </md-list-item> -->
 
       <!-- Generate list item for each location result -->
-<!--       <md-list-item ng-repeat="u in ul.users">
-        <md-button ng-click="ul.selectUser(u)" ng-class="{'selected' : u === ul.selected }">
-          <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
-          {{u.name}}
+      <md-list-item ng-repeat="place in places">
+        <md-button>
+          <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
+          {{place.venue.name}}
         </md-button>
-      </md-list-item> -->
+      </md-list-item>
 
     </md-list>
   </md-sidenav>
