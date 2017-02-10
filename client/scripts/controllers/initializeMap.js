@@ -31,6 +31,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.$apply();
   });
 
+  // returns name of clicked sidenav list item
+  $scope.logName = function(name) {
+    console.log(name);
+  }
+
   NgMap.getMap().then(function(map) {
   });
 
