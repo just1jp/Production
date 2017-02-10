@@ -1,9 +1,9 @@
 html,
 body {
- height:100%;
- width:100%;
- padding:0;
- margin:0;
+  height:100%;
+  width:100%;
+  padding:0;
+  margin:0;
 }
 
 .content-div {
@@ -59,7 +59,7 @@ body {
 }
 
 .login_title {
-  font-family: "myriad-pro",sans-serif;
+  font-family: "myriad-pro", sans-serif;
   font-style: normal;
   font-weight: 500;
   color: rgb(105,105,105);
@@ -219,26 +219,30 @@ ng-map {
 /*           TOOLBAR             */
 /*********************************/
 
-.title {
+.toolbar {
+  padding-left: 20px;
+}
+
+.toolbar-title {
   margin: 5px 25px 5px 25px;
 }
 
-.menu-link {
+.toolbar-link {
   padding: 5px;
   color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
 }
 
-.menu-link:hover,
-.menu-link:active,
-.menu-link:focus {
+.toolbar-link:hover,
+.toolbar-link:active,
+.toolbar-link:focus {
   color: #f1f1f1;
   text-decoration: none;
 }
 
-.menu-group {
+.toolbar-group {
   position: absolute;
   top: 18px;
   right: 25px;
@@ -249,17 +253,25 @@ ng-map {
 /*           SIDENAV             */
 /*********************************/
 
-.toolbar {
-  padding-left: 100px;
-}
-
 .md-tab {
   font-size: 20px;
   text-shadow: 1px 2px 1px #ccc;
 }
 
 .location-list {
-  margin: 15px;
+  margin: 12px;
+}
+
+.location-name {
+  font-weight: 600;
+  position: absolute;
+  left: 25px;
+}
+
+.location-price {
+  position: absolute;
+  right: 25px;
+  color: #494A4A;
 }
 
 
