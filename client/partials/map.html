@@ -1,11 +1,11 @@
 <!-- Toolbar --> 
-<md-toolbar layout="row" class="md-whiteframe-z2 md-primary md-hue-3" ng-controller="registerLogInLogOut">
-  <span class="title">
+<md-toolbar layout="row" class="toolbar md-whiteframe-z2 md-primary md-hue-3" ng-controller="registerLogInLogOut">
+  <span class="toolbar-title">
     <h1> CrissCross </h1>
   </span>
-  <span class="menu-group">
-    <a href="#" class="menu-link" ng-click="showProfile()" ng-show="loggedIn">Profile</a>
-    <a href="#" class="menu-link" ng-click="logOut()" ng-show="loggedIn">Logout</a>
+  <span class="toolbar-group">
+    <a href="#" class="toolbar-link" ng-click="showProfile()" ng-show="loggedIn">Profile</a>
+    <a href="#" class="toolbar-link" ng-click="logOut()" ng-show="loggedIn">Logout</a>
   </span>
     <!-- <span>{{badLogin}}</span> -->
 </md-toolbar>
@@ -21,14 +21,15 @@
         <md-tab id="drink-tab" md-on-select="queryByType('drinks')"><i class="fa fa-glass" aria-hidden="true"></i></md-tab>
       </md-tabs>
     </md-subheader>
-    <md-list flex ng-controller="initializeMap">
 
+    <md-list layout="column" ng-controller="initializeMap">
       <!-- Generate list item for each location result -->
       <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="logName(location.venue.name)">
         <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
-        <span class="location-name">{{ location.venue.name }}</span>
-        <span class="location-price">{{ '$'.repeat(location.venue.price.tier || 1 )}}</span>
-        <span class="location-hours">{{ location.venue.hours.status || 'Contact for hours' }}</span>
+        <span class="location-name" layout-align="start">{{ location.venue.name }}</span>
+        <span class="location-price" layout-align="end">{{ '$'.repeat(location.venue.price.tier || 1 )}}</span>
+<!--         <br>
+        {{ location.venue.hours.status || 'Contact for hours' }} -->
       </md-list-item>
 
     </md-list>
@@ -73,9 +74,9 @@
 
 <!-- <div class="icon-message" ng-controller="registerLogInLogOut">
     <img ng-show="loggedIn" src="../images/icon-message.png" ng-click="showPartial()">
-</div> 
+</div>  -->
 
-<div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
+<!-- <div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
 
   <div class="panel-body chat-window" >
     <div style="height: 80%">
