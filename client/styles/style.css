@@ -337,3 +337,7 @@ hr{
 .toolbar {
   padding-left: 100px;
 }
+
+.location-list {
+  margin: 15px;
+}
