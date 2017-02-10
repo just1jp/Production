@@ -5,6 +5,10 @@
 
 angular.module('myApp').controller('initializeMap', function($rootScope, $scope, databaseAndAuth, coordinateCalc, NgMap) {
 
+  $scope.clickLocation = function(event, index) {
+    $scope.highlight = { selected: index };
+  }
+
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
     updateCenterPointAndRadius();
