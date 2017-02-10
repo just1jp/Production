@@ -1,6 +1,6 @@
-#PalFinder
+#CrissCross
 
-App that alows you to see your friends on Google Map and message them in real time.
+See your friends on a map and chat with them in real time to decide where to meet up.
 
 ##Getting started:
 
@@ -9,7 +9,11 @@ App that alows you to see your friends on Google Map and message them in real ti
 **Project source code can be downloaded from https://github.com/PalFinder/Production**
 
 ##Authors
+Justin Mendelson
+Brenner Spear
+Kay Christensen
 
+Work based on original PalFinder app by
 Anukul Shenoy   
 Aprajita Jain  
 Dan Svorcan  
@@ -19,6 +23,6 @@ All authors were students at Hack Reactor at the time of the project (class HR 5
 
 #Reporting bugs and fixes  
 
-Report all bugs/fixes to dsvorc41@gmail.com
+Report all bugs/fixes to jmendelson22@gmail.com
 
 ##License: MIT
