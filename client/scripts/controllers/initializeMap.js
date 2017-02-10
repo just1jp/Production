@@ -8,6 +8,16 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
     updateCenterPointAndRadius();
+
+    databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
+      $scope.foursquareLocations = [];
+      for (key in snapshot.val()) {
+        $scope.foursquareLocations.push(snapshot.val()[key]);
+      }
+    });
+    
+    console.log('foursquare array', $scope.foursquareLocations);
+    console.log('foursquare location latitude', $scope.foursquareLocations[0].venue.location.lat);
     $scope.$apply();
   });
 
@@ -24,6 +34,15 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   NgMap.getMap().then(function(map) {
   });
 
+  function renderLocationsonMap() {
+    databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
+      $scope.foursquareLocations = [];
+      for (key in snapshot.val()) {
+        $scope.foursquareLocations.push(snapshot.val()[key]);
+      }
+    });
+  }
+
   function updateCenterPointAndRadius() {
     coordinateCalc.getUserLocationData().then(function(coordinates) {
       circleData = coordinateCalc.calculateCircle(coordinates);
@@ -31,6 +50,15 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       $scope.avgLat = circleData.midpointLat;
       $scope.avgLon = circleData.midpointLon;
       $scope.radius = circleData.radius;
+
+      databaseAndAuth.database.ref('/search_radius').set({
+        midpointLat: circleData.midpointLat,
+        midpointLon: circleData.midpointLon,
+        radius: circleData.radius
+      })
+
+      // renderLocationsonMap();
+
       console.log('updating search circle', $scope.avgLat, $scope.avgLon, $scope.radius);
     })
   }
