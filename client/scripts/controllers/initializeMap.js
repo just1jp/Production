@@ -57,7 +57,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
             map,
             {
               marker_id: location.venue.name,
-              innerHTML: '<p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">' + location.venue.name + '</p>'
+              innerHTML: '<p class="location-label">' + location.venue.name + '</p>'
             }
           );
           marker.addListener('click', clickLocation);
@@ -65,27 +65,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       })
     })
 
-    // <----- NEED TO REPLACE THIS ----->
-    // <div ng-repeat="location in foursquareLocations track by $index">
-    //   <marker
-    //     on-click="clickLocation($index)"
-    //     name="{{location.venue.name}}"
-    //     position="{{location.venue.location.lat}}, {{location.venue.location.lng}}"
-    //     animation="DROP">
-    //   </marker>
-    //   <custom-marker
-    //     on-click="clickLocation($index)"
-    //     key="location-{{$index}}" 
-    //     position="{{location.venue.location.lat}}, {{location.venue.location.lng}}">
-    //     <p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">{{location.venue.name}}</p>
-    //   </custom-marker>
-    // </div>
-
   });
 
+  // Function that fires when user clicks on a map marker
   var clickLocation = function() {
     console.log(this.name);
-    $scope.highlight = { selected: index };
   }
 
   // Create a promise that returns an array of foursquare locations currently in Firebase
@@ -144,7 +128,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       div.className = 'marker-label';
       div.style.position = 'absolute';
       div.style.cursor = 'pointer';
-      div.style.width = '100px';
       div.style.height = '20px';
       
       if (typeof(self.args.innerHTML) !== 'undefined') {
@@ -158,7 +141,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       // Add an on click event to the name on the marker
       google.maps.event.addDomListener(div, "click", function(event) {      
         console.log(this.dataset.marker_id);
-        $scope.highlight = { selected: index };
       });
       
       var panes = this.getPanes();
