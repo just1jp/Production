@@ -20,7 +20,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       }
     });
     
-    console.log('foursquare array', $scope.foursquareLocations);
+    // console.log('foursquare array', $scope.foursquareLocations);
     console.log('foursquare location latitude', $scope.foursquareLocations[0].venue.location.lat);
     $scope.$apply();
   });
@@ -34,6 +34,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.userLocations = databaseAndAuth.users;
     $scope.$apply();
   });
+
+  // returns name of clicked sidenav list item
+  $scope.logName = function(name) {
+    console.log(name);
+  }
 
   NgMap.getMap().then(function(map) {
   });
@@ -63,33 +68,10 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
       // renderLocationsonMap();
 
+      console.log('LOCATIONS', $scope.foursquareLocations)
       console.log('updating search circle', $scope.avgLat, $scope.avgLon, $scope.radius);
     })
   }
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,46 +1,71 @@
-<div class="logout" ng-controller="registerLogInLogOut">
-  <form>
-    <div class="form-group">
-      <button class="btn btn-action" type="submit" ng-click="showProfile()" ng-show="loggedIn">Profile</button>
-      <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
-      <br>
-      <div>{{badLogin}}</div>
+<!-- Toolbar --> 
+<md-toolbar layout="row" class="md-whiteframe-z2 md-primary md-hue-3" ng-controller="registerLogInLogOut">
+  <span class="title">
+    <h1> CrissCross </h1>
+  </span>
+  <span class="menu-group">
+    <a href="#" class="menu-link" ng-click="showProfile()" ng-show="loggedIn">Profile</a>
+    <a href="#" class="menu-link" ng-click="logOut()" ng-show="loggedIn">Logout</a>
+  </span>
+    <!-- <span>{{badLogin}}</span> -->
+</md-toolbar>
+
+<div flex layout="row" class="content-div">
+
+  <!-- Sidenav Container (Container #3 )-->
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
+    <md-subheader class="md-no-sticky"> Insert Tabs Here </md-subheader>
+    <md-list flex ng-controller="initializeMap">
+
+      <!-- Generate list item for each location result -->
+      <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="logName(location.venue.name)">
+          <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
+          {{location.venue.name}} - {{'$'.repeat(location.venue.price.tier)}}
+          <br>
+          {{location.venue.hours.status}}
+      </md-list-item>
+
+    </md-list>
+  </md-sidenav>
+
+  <!-- Map Container (Container #4) -->
+  <md-content flex id="content">
+
+    <div ng-controller="initializeMap" class="map-wrapper">
+      <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
+        <div ng-repeat="location in foursquareLocations track by $index">
+          <marker
+            on-click="clickLocation($index)"
+            name="{{location.venue.name}}"
+            position="{{location.venue.location.lat}}, {{location.venue.location.lng}}"
+            animation="DROP">
+          </marker>
+          <custom-marker
+            on-click="clickLocation($index)"
+            key="location-{{$index}}" 
+            position="{{location.venue.location.lat}}, {{location.venue.location.lng}}">
+            <p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">{{location.venue.name}}</p>
+          </custom-marker>
+        </div>
+        <shape id="circle" name="circle" centered="true" 
+          center="{{avgLat}} {{avgLon}}"
+          stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
+          radius={{radius}} editable="true" >
+        </shape>
+        <directions suppress-markers="true"></directions>
+        <div ng-repeat="(key, value) in userLocations" >
+          <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
+          <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
+            <p class="user-label">{{value.username}}</p>
+          </custom-marker>
+        </div>
+      </ng-map>
     </div>
-  </form>
+  </md-content>
+
 </div>
 
-<div ng-controller="initializeMap" class="map-wrapper">
-  <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
-    <div ng-repeat="location in foursquareLocations track by $index">
-      <marker
-        on-click="clickLocation($index)"
-        name="{{location.venue.name}}"
-        position="{{location.venue.location.lat}}, {{location.venue.location.lng}}"
-        animation="DROP">
-      </marker>
-      <custom-marker
-        on-click="clickLocation($index)"
-        key="location-{{$index}}" 
-        position="{{location.venue.location.lat}}, {{location.venue.location.lng}}">
-        <p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">{{location.venue.name}}</p>
-      </custom-marker>
-    </div>
-    <shape id="circle" name="circle" centered="true" 
-      center="{{avgLat}} {{avgLon}}"
-      stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
-      radius={{radius}} editable="true" >
-    </shape>
-    <directions suppress-markers="true"></directions>
-    <div ng-repeat="(key, value) in userLocations" >
-      <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
-      <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
-        <p class="user-label">{{value.username}}</p>
-      </custom-marker>
-    </div>
-  </ng-map>
-</div>
-
-<div class="icon-message" ng-controller="registerLogInLogOut">
+<!-- <div class="icon-message" ng-controller="registerLogInLogOut">
     <img ng-show="loggedIn" src="../images/icon-message.png" ng-click="showPartial()">
 </div> 
 
@@ -66,9 +91,9 @@
 
   </div>
 
-</div>
-
+</div> -->
 
 <div ng-controller="watchCurrentUserLocation"></div>
 
-<div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div>
+
+    

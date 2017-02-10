@@ -1,13 +1,15 @@
 {
-  "name": "test",
-  "homepage": "https://abc.com",
+  "name": "crisscross",
+  "version": "0.0.0",
   "authors": [
-    "Anukul <shenoyanukul@gmail.com>"
+    "Justin Mendelson <jmendelson22@gmail.com>",
+    "Brenner Spear <blspear@gmail.com>",
+    "Kay Christensen <kaychristensen@gmail.com>"
   ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
+  "description": "an app to find a meeting place convenient to many friends",
+  "repository": "https://github.com/HRSF53-Laser-Light/crisscross",
   "private": true,
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -17,10 +19,17 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.3.16",
+    "angular": "^1.5.5",
     "angular-route": "~1.3.16",
     "angularfire": "^2.3.0",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-messages": "^1.5.5",
+    "angular-material": "^1.1.0",
     "ngmap": "~1.17.8",
     "ngGeolocation": "~0.0.8"
+  },
+  "resolutions": {
+    "angular": "1.6.2"
   }
 }
