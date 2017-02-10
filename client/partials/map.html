@@ -51,6 +51,7 @@
           stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
           radius={{radius}} editable="true" >
         </shape>
+
         <div ng-repeat="location in foursquareLocations track by $index">
           <marker
             position="{{location.venue.location.lat}}, {{location.venue.location.lng}}"
@@ -60,6 +61,7 @@
             <p class="location-label">{{location.venue.name}}</p>
           </custom-marker>
         </div>
+
         <directions suppress-markers="true"></directions>
         <div ng-repeat="(key, value) in userLocations" >
           <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
