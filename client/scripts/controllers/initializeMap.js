@@ -5,6 +5,8 @@
 
 angular.module('myApp').controller('initializeMap', function($rootScope, $scope, databaseAndAuth, coordinateCalc, foursquare, NgMap) {
 
+
+
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
     updateCenterPointAndRadius();
@@ -41,7 +43,9 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   }
 
   NgMap.getMap().then(function(map) {
-    renderLocationsonMap().then(function(foursquareLocations) {
+
+    // Handle rendering markers on the map for current Foursquare data in Firebase
+    retrieveFoursquareLocations().then(function(foursquareLocations) {
       foursquareLocations.forEach((location, index) => {
         // Add a marker on the map for each foursquare location
         setTimeout(function() {
@@ -65,7 +69,28 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       })
     })
 
+    // Handle putting directions on the map
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setMap(map);
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+
   });
+
+  // Function that calculates a route on the map
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    directionsService.route({
+      origin: '944 Market Street, 8th floor, San Francisco, CA 94102',
+      destination: 'Embarcadero Center, San Francisco, CA',
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        console.log('Directions request failed due to ' + status);
+      }
+    });
+  } 
 
   // Function that fires when user clicks on a map marker
   var clickLocation = function() {
@@ -73,7 +98,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   }
 
   // Create a promise that returns an array of foursquare locations currently in Firebase
-  var renderLocationsonMap = function() {
+  var retrieveFoursquareLocations = function() {
     return databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
       foursquareLocations = [];
       for (key in snapshot.val()) {

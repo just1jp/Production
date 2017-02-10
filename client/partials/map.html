@@ -40,6 +40,13 @@
 
     <div ng-controller="initializeMap" class="map-wrapper">
       <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
+        <!-- <directions
+          draggable="false"
+          panel="directions-panel"
+          travel-mode="DRIVING"
+          origin="944 Market Street, 8th floor, San Francisco, CA 94102"
+          destination="Embarcadero Center, San Francisco, CA">
+        </directions> -->
         <shape id="circle" name="circle" centered="true" 
           center="{{avgLat}} {{avgLon}}"
           stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
