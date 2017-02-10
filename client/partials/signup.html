@@ -1,28 +1,25 @@
 <div class="container">
-<img class="logo" src="../images/logo-palfinder.png" width="350" />
-<div><h3 class='login_title'>Signup</h3></div>
-<div class="card card-container">  
-<div class="login" ng-controller="registerLogInLogOut">
+  <img class="logo" src="../images/logo-palfinder.png" width="350" />
+  <div><h3 class='login_title'>Signup</h3></div>
+  <div class="card card-container">  
+    <div class="login" ng-controller="registerLogInLogOut">
       <form class="form-signin">
         <div class="form-group">
-           <span id="reauth-email" class="reauth-email"></span>
+          <span id="reauth-email" class="reauth-email"></span>
           <!-- <p class="input_title">Email</p> -->
           <input type="text" id="inputEmail" class="login_box" ng-model="email" placeholder="email" ng-show="!loggedIn" required autofocus>
           <!-- <p class="input_title">Password</p> -->
           <input type="password" ng-model="password" placeholder="password" ng-show="!loggedIn" required>
           <div id="remember" class="checkbox">
-                    <label>
-                        
-                    </label>
+            <label></label>
           </div>
           <button class="btn btn-default" type="submit" ng-click="register()" ng-show="!loggedIn">SIGNUP</button>
           <div>{{badLogin}}</div>
           <a href="/">Already have an account? <strong>Login</strong> ...</a>
         </div>
       </form>
-</div>
-
-</div>
+    </div>
+  </div>
 </div>
 
 

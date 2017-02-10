@@ -2,7 +2,7 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
 
   var factory = {};
 
-  factory.getFoursquareData = function() {
+  factory.getFoursquareData = function(locationType) {
 
     // Grab the location of all users on the map
     coordinateCalc.getUserLocationData().then(function(coordinates) {
@@ -14,6 +14,7 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
       var long = circleData.midpointLon;
       var radius = circleData.radius;
       var latlon = lat + "," + long;
+      section = locationType || 'food';
 
       // Make a request to Foursquare with the circle coordinates and radius
       $http.get('/api/foursquare', 
@@ -23,7 +24,7 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
           radius: radius,
           llAcc: 20,
           limit: 10,
-          section: 'food'
+          section: section
         }
       })
       .then( result => {
