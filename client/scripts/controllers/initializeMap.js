@@ -3,7 +3,7 @@
   * @description Controller for Google Maps. Makes use of databaseAndAuth factory in order to retrieve/update chat messages from the databse. Listens for any changes in $rootScope (broadcasted by services), and then takes in the new (broadcasted) data and applies it to $scope
 */
 
-angular.module('myApp').controller('initializeMap', function($rootScope, $scope, databaseAndAuth, coordinateCalc, NgMap) {
+angular.module('myApp').controller('initializeMap', function($rootScope, $scope, databaseAndAuth, coordinateCalc, foursquare, NgMap) {
 
   $scope.clickLocation = function(event, index) {
     $scope.highlight = { selected: index };
@@ -37,7 +37,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   // returns name of clicked sidenav list item
   $scope.logName = function(name) {
-    console.log(name);
+    console.log('Venue.name is', name);
+  }
+
+  $scope.queryByType = function(type) {
+    foursquare.getFoursquareData(type);
   }
 
   NgMap.getMap().then(function(map) {
