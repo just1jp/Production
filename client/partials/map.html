@@ -14,10 +14,11 @@
 
   <!-- Sidenav Container (Container #3 )-->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
-    <md-list ng-controller="initializeMap">
+    <md-subheader class="md-no-sticky"> Insert Tabs Here </md-subheader>
+    <md-list flex ng-controller="initializeMap">
 
       <!-- Generate list item for each location result -->
-      <md-list-item class='location-list' ng-repeat="location in foursquareLocations track by $index">
+      <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="logName(location.venue.name)">
           <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
           {{location.venue.name}} - {{'$'.repeat(location.venue.price.tier)}}
           <br>
