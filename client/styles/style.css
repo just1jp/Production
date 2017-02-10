@@ -11,11 +11,6 @@ body {
   width:100%;
 }
 
-/*#map {
-  height:100%; 
-  width: 100%;
-}*/
-
 ng-map {
   height:100%;
   width: 100%;
@@ -85,17 +80,46 @@ ng-map {
   margin: 5px 25px 5px 25px;
 }
 
-/*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
-/*button .sendMessage {
-  background: transparent;
-  background-image: url(../images/icon-message.png);
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  margin: auto;
-  height: 100px;
-  width: 100px;
-  border: none;
-}*/
+
+
+/*********************************/
+/*           SIDENAV             */
+/*********************************/
+
+.toolbar {
+  padding-left: 100px;
+}
+
+.md-tab {
+  font-size: 20px;
+  text-shadow: 1px 2px 1px #ccc;
+}
+
+.menu-link {
+  padding: 5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.menu-link:hover,
+.menu-link:active,
+.menu-link:focus {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+
+.menu-group {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+}
+
+
+/*********************************/
+/*             CHAT              */
+/*********************************/
 
 .chat-window {
   text-align: left;
@@ -152,24 +176,24 @@ ng-map {
   height: 100%;
 }
 
-.login_box{
+.login_box {
   background:#f7f7f7;
   border:3px solid #F4F4F4;
   padding-left: 15px;
   margin-bottom:25px;
 }
 
-.input_title{
+.input_title {
   color: rgb(105,105,105);
   padding-left:3px;
   margin-bottom: 2px;
 }
 
-hr{
+hr {
   width:100%;
 }
 
-.welcome{
+.welcome {
   font-family: "myriad-pro",sans-serif;
   font-style: normal;
   font-weight: 100;
@@ -178,7 +202,7 @@ hr{
   margin-top:50px;
 }
 
-.login_title{
+.login_title {
   font-family: "myriad-pro",sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -204,26 +228,6 @@ hr{
   margin-bottom:10px;
 }
 
-.menu-link {
-  padding: 5px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-.menu-link:hover,
-.menu-link:active,
-.menu-link:focus {
-  color: #f1f1f1;
-  text-decoration: none;
-}
-
-.menu-group {
-  position: absolute;
-  top: 18px;
-  right: 25px;
-}
 
 /*
  * Card component
@@ -340,10 +344,8 @@ hr{
   color: rgb(12, 97, 33);
 }
 
-.toolbar {
-  padding-left: 100px;
-}
-
 .location-list {
   margin: 15px;
 }
+
+
