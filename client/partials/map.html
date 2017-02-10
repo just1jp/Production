@@ -26,9 +26,9 @@
       <!-- Generate list item for each location result -->
       <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="logName(location.venue.name)">
         <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
-        {{location.venue.name}} - {{'$'.repeat(location.venue.price.tier || 1)}}
-        <br>
-        {{location.venue.hours.status || 'Contact for hours'}}
+        <span class="location-name">{{ location.venue.name }}</span>
+        <span class="location-price">{{ '$'.repeat(location.venue.price.tier || 1 )}}</span>
+        <span class="location-hours">{{ location.venue.hours.status || 'Contact for hours' }}</span>
       </md-list-item>
 
     </md-list>

@@ -11,13 +11,13 @@
           <input type="password" ng-model="password" placeholder="password" ng-show="!loggedIn" required> 
 
           <div id="remember" class="checkbox">
-                    <label>
-                        
-                    </label>
+            <label>
+                
+            </label>
           </div>
           <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">LOGIN</button>
 
-          <div>{{badLogin}}</div>
+          <div>{{ badLogin }}</div>
           <a href="" ng-click="signUp()">Don't have an account? <strong>Signup</strong> ...</a>
         </div>
       </form>
