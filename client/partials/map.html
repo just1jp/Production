@@ -16,26 +16,12 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
     <md-list ng-controller="initializeMap">
 
-      <!-- List item #1 -->
-<!--       <md-list-item >
-        <md-button>
-          Best Food Ever
-        </md-button>
-      </md-list-item> -->
-
-      <!-- List item #2 -->
-<!--       <md-list-item >
-        <md-button>
-          Also Great Food
-        </md-button>
-      </md-list-item> -->
-
       <!-- Generate list item for each location result -->
-      <md-list-item ng-repeat="location in foursquareLocations track by $index">
-        <md-button>
+      <md-list-item class='location-list' ng-repeat="location in foursquareLocations track by $index">
           <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
-          {{location.venue.name}}
-        </md-button>
+          {{location.venue.name}} - {{'$'.repeat(location.venue.price.tier)}}
+          <br>
+          {{location.venue.hours.status}}
       </md-list-item>
 
     </md-list>
