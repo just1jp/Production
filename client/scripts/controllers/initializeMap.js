@@ -3,7 +3,9 @@
   * @description Controller for Google Maps. Makes use of databaseAndAuth factory in order to retrieve/update chat messages from the databse. Listens for any changes in $rootScope (broadcasted by services), and then takes in the new (broadcasted) data and applies it to $scope
 */
 
-angular.module('myApp').controller('initializeMap', function($rootScope, $scope, databaseAndAuth, coordinateCalc, foursquare, NgMap) {
+angular.module('myApp').controller('initializeMap', function($rootScope, $scope, $http, databaseAndAuth, coordinateCalc, foursquare, NgMap) {
+
+  $rootScope.searchType = 'food';
 
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
@@ -32,8 +34,42 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   //Grab new search circle data
   $scope.searchUpdate = function() {
-    // TODO: Grab updated circle data
+    databaseAndAuth.database.ref('/search_radius').set({
+      midpointLat: this.getCenter().lat(),
+      midpointLon: this.getCenter().lng(),
+      radius: this.getRadius()
+    })
   }
+
+  //Listen to updates to the search circle and update Foursquare results
+  databaseAndAuth.database.ref('/search_radius').on('value', function(snapshot) {
+    
+    var latlon = snapshot.val().midpointLat + "," + snapshot.val().midpointLon;
+    var radius = snapshot.val().radius;
+
+    // Make a request to Foursquare with the circle coordinates and radius
+    $http.get('/api/foursquare', 
+    {
+      params: {
+        ll: latlon,
+        radius: radius,
+        llAcc: 20,
+        limit: 10,
+        section: $scope.searchType
+      }
+    })
+    .then( result => {
+      var places = result.data.response.groups[0].items;
+      var placeId = 0;
+
+      places.forEach(place => {
+        databaseAndAuth.database.ref('/foursquare_results').child('location' + placeId).set(place);
+        placeId++;
+      });
+
+    });
+
+  });
 
   // returns name of clicked sidenav list item
   $scope.logName = function(name) {
@@ -41,7 +77,14 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   }
 
   $scope.queryByType = function(type) {
-    foursquare.getFoursquareData(type);
+    $scope.searchType = type;
+    databaseAndAuth.database.ref('/search_radius').once('value').then(function(snapshot) {
+      foursquare.getFoursquareData(type, {
+        lat: snapshot.val().midpointLat,
+        lng: snapshot.val().midpointLon,
+        radius: snapshot.val().radius
+      });
+    });
   }
 
   NgMap.getMap().then(function(map) {
@@ -111,6 +154,9 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.highlight = { selected: index };
   }
 
+
+// TODO FIX THIS FUNCTION
+
   // Recalculate the search coordinates for the map
   var updateCenterPointAndRadius = function() {
     coordinateCalc.getUserLocationData().then(function(coordinates) {
@@ -125,14 +171,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
         midpointLon: circleData.midpointLon,
         radius: circleData.radius
       })
-
-      // renderLocationsonMap();
     })
   }
 
   //Render search circle once
   updateCenterPointAndRadius();
-
 
   // Create some new functionality for Google Maps Custom Markers
   function CustomMarker(latlng, map, args) {
