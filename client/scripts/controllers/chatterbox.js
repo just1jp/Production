@@ -24,7 +24,7 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
       text: $scope.text,
       createdAt: Date()
     });
-
+    console.log('')
     $scope.text = '';
   };
   /**
@@ -42,11 +42,8 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
       console.log('messageObj', $scope.messageObj)
       $scope.$apply();
     });
+    $scope.showMessages = true;
   };
-
-  $scope.hidePartial = function() {
-    $rootScope.showMessages = false;
-  }
 
   $scope.showChat = function() {
     console.log('in showChat function')
