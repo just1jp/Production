@@ -26,7 +26,7 @@ angular.module('myApp').controller('watchCurrentUserLocation', function($rootSco
   /**
     * @params options
     * @memberOf watchCurrentUserLocation
-    * @description Parameters for navigator.geolocation.watchPosition() that enable high accuracy mode (uses GPS, cellular tower signals, and WiFi, depending on avialability of each). It also accepts location information regardles of its age (Inifnity)
+    * @description Parameters for navigator.geolocation.watchPosition() that enable high accuracy mode (uses GPS, cellular tower signals, and WiFi, depending on availability of each). It also accepts location information regardles of its age (Inifnity)
   */
   var options = {
     enableHighAccuracy: true,

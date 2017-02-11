@@ -13,6 +13,7 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
     * @description Gets the user email and username from the database. Takes user input ($scope.text) and updates the database with that input. Each input is added to the user that submitted it.
   */
   $scope.sendMessage = function(userId, text) {
+    console.log('sendMessage function')
     var chatEmail = databaseAndAuth.auth.currentUser.email;
     var chatUsername = chatEmail.slice(0, chatEmail.indexOf('@'));
     
@@ -32,14 +33,15 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
     * @description Gets all the chats from the database, attaches them to the scope, and then renders the updated scope ($scope.apply())
   */
   $scope.fetchMessage = function() {
+    console.log('in fetchMessage')
     
     var ref = database.ref('chats');
     
     ref.limitToLast(9).on('value', function(chat) {
       $scope.messageObj = chat.val();
+      console.log('messageObj', $scope.messageObj)
       $scope.$apply();
     });
-
   };
 
   $scope.hidePartial = function() {
@@ -48,11 +50,10 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
 
   $scope.showChat = function() {
     console.log('in showChat function')
-    $scope.alert='';
 
     $mdBottomSheet.show({
       templateUrl: 'chat-template.html',
-      // controller: 'ListBottomSheetCtrl'
+      controller: 'chatterboxCtrl'
     });
   }
 });

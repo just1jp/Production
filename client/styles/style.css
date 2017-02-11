@@ -284,9 +284,11 @@ ng-map {
 /*********************************/
 
 .chat-sheet {
+/*  background-color: #fff;*/
   width: 300px;
   height: 400px;
   position: absolute;
+/*  background-color: #fff;*/
   left: 0;
   right: 0;
   bottom: 0;
@@ -313,7 +315,7 @@ ng-map {
 
 .panel {
   position: absolute;
-  bottom: 0;
+  bottom: 100;
   z-index: 100;
   margin-bottom: 0px;
   width: 100%;
@@ -321,27 +323,25 @@ ng-map {
 
 .panel-body {
   padding: 5px 15px;
+  background-color: #000;
+  position: absolute;
+  bottom: 200;
 }
-
+/*
 .panel-transparent {
   background: none;
-}
+}*/
 
-.chat-window {
-  z-index: 100;
+/*.chat-window {
+  z-index: 1;
   text-align: left;
   height: 400px;
   background-color: #dcdcdc;
-}
+}*/
 
 .input-field {
-  float:bottom;
-}
-
-.input-field textarea {
-  width: 90%;
-  z-index: 100;
-}
+  border: 1px;
+} 
 
 
 /*********************************/
