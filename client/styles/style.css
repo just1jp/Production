@@ -114,62 +114,6 @@ body {
   box-sizing: border-box;
 }
 
-/*.btn.btn-signin {
-  background-color: #4d90fe; 
-  background-color: rgb(104, 145, 162);
-  background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-  padding: 0px;
-  font-weight: 700;
-  font-size: 14px;
-  height: 36px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: none;
-  -o-transition: all 0.218s;
-  -moz-transition: all 0.218s;
-  -webkit-transition: all 0.218s;
-  transition: all 0.218s;
-}
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-  background-color: rgb(12, 97, 33);
-}*/
-
-/*.input_title {
-  color: rgb(105,105,105);
-  padding-left:3px;
-  margin-bottom: 2px;
-}*/
-
-/*.logout {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  text-align: right;
-}*/
-
-/*.forgot-password {
-  color: rgb(104, 145, 162);
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-  color: rgb(12, 97, 33);
-}*/
-
-/*.welcome {
-  font-family: "myriad-pro",sans-serif;
-  font-style: normal;
-  font-weight: 100;
-  color:#FFFFFF;
-  margin-bottom:25px;
-  margin-top:50px;
-}*/
-
 
 /*********************************/
 /*             MAP               */
@@ -279,30 +223,25 @@ ng-map {
   color: #494A4A;
 }
 
+.location-list span:focus {
+  outline: none;
+}
+
 
 /*********************************/
 /*             CHAT              */
 /*********************************/
 
 .chat-sheet {
-/*  background-color: #fff;*/
   width: 300px;
   height: 400px;
   position: absolute;
-/*  background-color: #fff;*/
   left: 0;
   right: 0;
   bottom: 0;
   padding: 8px 16px 88px 16px;
   z-index: 70;
-  /*-webkit-transform: translate3d(0, 10px, 0);
-  transform: translate3d(0, 10px, 0);
-  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -webkit-transition-property: -webkit-transform;
-  transition-property: -webkit-transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;*/
+  background-color: #DEDAD9;
 }
 
 .btn-chat-open {
@@ -315,34 +254,34 @@ ng-map {
 }
 
 .panel {
+  width: 283px;
+  height: 216px;
   position: absolute;
-  bottom: 100;
-  z-index: 100;
+  left: 8px;
+  background-color: #fff;
+  margin-top: 10px;
   margin-bottom: 0px;
-  width: 100%;
+  padding: 3px;
+  font-size: 12px;
 }
 
-.panel-body {
-  padding: 5px 15px;
-  background-color: #000;
+.chat-input {
   position: absolute;
-  bottom: 200;
+  padding: 1px 3px;
+  left: 8px;
+  bottom: 135px;
+  width: 258px;
 }
-/*
-.panel-transparent {
-  background: none;
-}*/
 
-/*.chat-window {
-  z-index: 1;
-  text-align: left;
-  height: 400px;
-  background-color: #dcdcdc;
-}*/
-
-.input-field {
+.chat-button {
+  position: absolute;
+  bottom: 85px;
+  left: 1px;
   border: 1px;
-} 
+  border-style: solid;
+  border-color: #f1f1f1;
+  background-color: #fff;
+}
 
 
 /*********************************/
