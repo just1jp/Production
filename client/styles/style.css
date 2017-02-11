@@ -285,24 +285,15 @@ ng-map {
 /*********************************/
 
 .chat-sheet {
-/*  background-color: #fff;*/
   width: 300px;
   height: 400px;
   position: absolute;
-/*  background-color: #fff;*/
   left: 0;
   right: 0;
   bottom: 0;
   padding: 8px 16px 88px 16px;
   z-index: 70;
-  /*-webkit-transform: translate3d(0, 10px, 0);
-  transform: translate3d(0, 10px, 0);
-  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -webkit-transition-property: -webkit-transform;
-  transition-property: -webkit-transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;*/
+  background-color: rgb(121,134,203)
 }
 
 .btn-chat-open {
@@ -315,34 +306,35 @@ ng-map {
 }
 
 .panel {
+  width: 283px;
+  height: 200px;
   position: absolute;
-  bottom: 100;
-  z-index: 100;
+  bottom: 20;
+  left: 8px;
+  background-color: #fff;
+  margin-top: 10px;
   margin-bottom: 0px;
-  width: 100%;
+  padding: 3px;
+  font-size: 12px;
 }
 
-.panel-body {
-  padding: 5px 15px;
-  background-color: #000;
+.chat-input {
   position: absolute;
-  bottom: 200;
+  padding: 1px;
+  left: 8px;
+  bottom: 150px;
+  width: 258px;
 }
-/*
-.panel-transparent {
-  background: none;
-}*/
 
-/*.chat-window {
-  z-index: 1;
-  text-align: left;
-  height: 400px;
-  background-color: #dcdcdc;
-}*/
-
-.input-field {
+.chat-button {
+  position: absolute;
+  bottom: 100px;
+  left: 1px;
   border: 1px;
-} 
+  border-style: solid;
+  border-color: #f1f1f1;
+  background-color: #fff;
+}
 
 
 /*********************************/
