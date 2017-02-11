@@ -16,22 +16,21 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
     * @description Angular router
     */
   $routeProvider
-  .when('/signup', {
-            templateUrl: '../../partials/signup.html',
-            controller: 'registerLogInLogOut'
-  })
-      .when('/profile', {
-        templateUrl: '../../partials/profile.html',
-        controller: 'privateMessages'
-      })
+    .when('/signup', {
+      templateUrl: '../../partials/signup.html',
+      controller: 'registerLogInLogOut'
+    })
+    .when('/profile', {
+      templateUrl: '../../partials/profile.html',
+      controller: 'privateMessages'
+    })
     .when('/map', {
-      templateUrl: '../../partials/map.html',
-      controller: 'initializeMap'
-  })
-  .when('/', {
+      templateUrl: '../../partials/map.html'
+    })
+    .when('/', {
       templateUrl: '../../partials/login.html',
       controller: 'registerLogInLogOut',
-  })
+    })
 
 })
 /**

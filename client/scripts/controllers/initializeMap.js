@@ -33,17 +33,9 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.$apply();
   });
 
-  // returns name of clicked sidenav list item
-  $scope.logName = function(name) {
-    console.log('Venue.name is', name);
-  }
-
-  $scope.queryByType = function(type) {
-    foursquare.getFoursquareData(type);
-  }
-
+  // This is the function that sucks - getting called four times.
   NgMap.getMap().then(function(map) {
-
+    console.log('in NgMap then function')
     // Handle rendering markers on the map for current Foursquare data in Firebase
     retrieveFoursquareLocations().then(function(foursquareLocations) {
       foursquareLocations.forEach((location, index) => {
@@ -190,13 +182,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   CustomMarker.prototype.getPosition = function() {
     return this.latlng; 
   };
-
-
-
-
-
-
-
 
 
 
