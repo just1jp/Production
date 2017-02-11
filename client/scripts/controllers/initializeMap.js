@@ -7,8 +7,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   $rootScope.searchType = 'food';
 
-
-
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
 
@@ -19,8 +17,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       }
     });
     
-    // console.log('foursquare array', $scope.foursquareLocations);
-    // console.log('foursquare location latitude', $scope.foursquareLocations[0].venue.location.lat);
     $scope.$apply();
   });
 
@@ -79,6 +75,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   }
 
   $scope.queryByType = function(type) {
+    console.log('looking for type', type);
     $scope.searchType = type;
     databaseAndAuth.database.ref('/search_radius').once('value').then(function(snapshot) {
       foursquare.getFoursquareData(type, {
@@ -88,6 +85,38 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       });
     });
   }
+
+  $scope.getLocInfo = function(location) {
+    console.log('show me more info for', location)
+  };
+
+  var clickLocation = function() {
+    console.log(this.name);
+    $scope.highlight = { selected: index };
+  }
+
+  // Recalculate the search coordinates for the map
+  var updateCenterPointAndRadius = function() {
+    coordinateCalc.getUserLocationData().then(function(coordinates) {
+      circleData = coordinateCalc.calculateCircle(coordinates);
+      
+      $scope.avgLat = circleData.lat;
+      $scope.avgLon = circleData.lng;
+      $scope.radius = circleData.radius;
+
+      databaseAndAuth.database.ref('/search_radius').set({
+        midpointLat: circleData.lat,
+        midpointLon: circleData.lng,
+        radius: circleData.radius
+      })
+    })
+  }
+
+  //Render search circle once
+  updateCenterPointAndRadius();
+
+
+  // <-------- START OF MAP -------->
 
   NgMap.getMap().then(function(map) {
 
@@ -151,30 +180,10 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   });
 
-  var clickLocation = function() {
-    console.log(this.name);
-    $scope.highlight = { selected: index };
-  }
+  // <-------- END OF MAP -------->
 
-  // Recalculate the search coordinates for the map
-  var updateCenterPointAndRadius = function() {
-    coordinateCalc.getUserLocationData().then(function(coordinates) {
-      circleData = coordinateCalc.calculateCircle(coordinates);
-      
-      $scope.avgLat = circleData.lat;
-      $scope.avgLon = circleData.lng;
-      $scope.radius = circleData.radius;
 
-      databaseAndAuth.database.ref('/search_radius').set({
-        midpointLat: circleData.lat,
-        midpointLon: circleData.lng,
-        radius: circleData.radius
-      })
-    })
-  }
-
-  //Render search circle once
-  updateCenterPointAndRadius();
+  // <-------- START OF CLASS DEFINITION -------->
 
   // Create some new functionality for Google Maps Custom Markers
   function CustomMarker(latlng, map, args) {
@@ -234,16 +243,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   CustomMarker.prototype.getPosition = function() {
     return this.latlng; 
   };
-
-
-  // Search for results by tab type (restaurant, coffee, drinks)
-  $scope.queryByType = function(type) {
-    console.log('i want to search for', type);
-  };
-
-  $scope.getLocInfo = function(location) {
-    console.log('show me more info for', location)
-  };
-
-
 });
+
+// <-------- END OF CLASS DEFINITION -------->
+
