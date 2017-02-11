@@ -7,7 +7,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
-    updateCenterPointAndRadius();
 
     databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
       $scope.foursquareLocations = [];
@@ -30,6 +29,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.userLocations = databaseAndAuth.users;
     $scope.$apply();
   });
+
+  //Grab new search circle data
+  $scope.searchUpdate = function() {
+    // TODO: Grab updated circle data
+  }
 
   // returns name of clicked sidenav list item
   $scope.logName = function(name) {
@@ -125,6 +129,9 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       // renderLocationsonMap();
     })
   }
+
+  //Render search circle once
+  updateCenterPointAndRadius();
 
 
   // Create some new functionality for Google Maps Custom Markers
