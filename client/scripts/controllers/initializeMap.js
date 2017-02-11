@@ -236,5 +236,14 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   };
 
 
+  // Search for results by tab type (restaurant, coffee, drinks)
+  $scope.queryByType = function(type) {
+    console.log('i want to search for', type);
+  };
+
+  $scope.getLocInfo = function(location) {
+    console.log('show me more info for', location)
+  };
+
 
 });
