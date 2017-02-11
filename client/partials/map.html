@@ -1,3 +1,4 @@
+<div ng-controller="initializeMap">
 <!-- Toolbar --> 
 <md-toolbar layout="row" class="toolbar md-whiteframe-z2 md-primary md-hue-3" ng-controller="registerLogInLogOut">
   <span class="toolbar-title">
@@ -14,7 +15,7 @@
 
   <!-- Sidenav Container (Container #3 )-->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
-    <md-subheader class="md-no-sticky" ng-controller="initializeMap">
+    <md-subheader class="md-no-sticky">
       <md-tabs md-dynamic-height="" class="sidenav-tabs" md-stretch-tabs="always">
         <md-tab id="food-tab" md-on-select="queryByType('food')"><i class="fa fa-cutlery" aria-hidden="true"></i></md-tab>
         <md-tab id="coffee-tab" md-on-select="queryByType('coffee')"><i class="fa fa-coffee" aria-hidden="true"></i></md-tab>
@@ -22,7 +23,7 @@
       </md-tabs>
     </md-subheader>
 
-    <md-list layout="column" ng-controller="initializeMap">
+    <md-list layout="column">
       <!-- Generate list item for each location result -->
       <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="logName(location.venue.name)">
         <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
@@ -38,7 +39,7 @@
   <!-- Map Container (Container #4) -->
   <md-content flex id="content">
 
-    <div ng-controller="initializeMap" class="map-wrapper">
+    <div class="map-wrapper">
       <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
         <shape id="circle" name="circle" centered="true" 
           center="{{avgLat}} {{avgLon}}"
@@ -90,3 +91,4 @@
 
 
     
+</div>

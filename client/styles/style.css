@@ -206,6 +206,7 @@ ng-map {
 .location-label {
   color: #9e0000;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+  margin-bottom: 0px;
 }
 
 .location_highlighted {

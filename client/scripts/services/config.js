@@ -25,8 +25,7 @@ angular.module('myApp').config(function($routeProvider, $locationProvider, $http
         controller: 'privateMessages'
       })
     .when('/map', {
-      templateUrl: '../../partials/map.html',
-      controller: 'initializeMap'
+      templateUrl: '../../partials/map.html'
   })
   .when('/', {
       templateUrl: '../../partials/login.html',

@@ -41,62 +41,70 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   }
 
   NgMap.getMap().then(function(map) {
-    renderLocationsonMap().then(function(foursquareLocations) {
-      foursquareLocations.forEach((location, index) => {
-        // Add a marker on the map for each foursquare location
-        setTimeout(function() {
-          var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(location.venue.location.lat, location.venue.location.lng),
-            map: map,
-            draggable: false,
-            animation: google.maps.Animation.DROP,
-            name: location.venue.name
-          });
-          var overlay = new CustomMarker(
-            new google.maps.LatLng(location.venue.location.lat, location.venue.location.lng), 
-            map,
-            {
-              marker_id: location.venue.name,
-              innerHTML: '<p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">' + location.venue.name + '</p>'
-            }
-          );
-          marker.addListener('click', clickLocation);
-        }, index * 200);
-      })
-    })
 
-    // <----- NEED TO REPLACE THIS ----->
-    // <div ng-repeat="location in foursquareLocations track by $index">
-    //   <marker
-    //     on-click="clickLocation($index)"
-    //     name="{{location.venue.name}}"
-    //     position="{{location.venue.location.lat}}, {{location.venue.location.lng}}"
-    //     animation="DROP">
-    //   </marker>
-    //   <custom-marker
-    //     on-click="clickLocation($index)"
-    //     key="location-{{$index}}" 
-    //     position="{{location.venue.location.lat}}, {{location.venue.location.lng}}">
-    //     <p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">{{location.venue.name}}</p>
-    //   </custom-marker>
-    // </div>
+    var markers = [];
+    var textOverlays = [];
+
+    databaseAndAuth.database.ref('/foursquare_results').on('value', function(snapshot) {
+
+      foursquareLocations = [];
+      for (key in snapshot.val()) {
+        foursquareLocations.push(snapshot.val()[key]);
+      }
+
+      // Adds a marker to the map and push to the array.
+      function addMarker(lat, lng, name) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(lat, lng),
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          name: name
+        });
+        marker.addListener('click', deleteMarkers);
+        markers.push(marker);
+
+        var overlay = new CustomMarker(
+          new google.maps.LatLng(lat, lng), 
+          map,
+          {
+            marker_id: name,
+            innerHTML: '<p class="location-label" ng-class="{ location_highlighted: $index == highlight.selected }">' + name + '</p>'
+          }
+        );
+        textOverlays.push(overlay);
+
+      }
+      
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        markers.forEach(marker => {marker.setMap(map);})
+        textOverlays.forEach(overlay => {overlay.setMap(map);})
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        console.log('delete markers');
+        setMapOnAll(null);
+        markers = [];
+        textOverlays = [];
+      }
+
+      // Clean the array of marker objects prior to adding to it
+      deleteMarkers();
+
+      // Add all foursquare locations to the markers array
+      foursquareLocations.forEach(location => {
+        addMarker(location.venue.location.lat, location.venue.location.lng, location.venue.name);
+      })
+
+    });
 
   });
 
   var clickLocation = function() {
     console.log(this.name);
     $scope.highlight = { selected: index };
-  }
-
-  // Create a promise that returns an array of foursquare locations currently in Firebase
-  var renderLocationsonMap = function() {
-    return databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
-      foursquareLocations = [];
-      for (key in snapshot.val()) {
-        foursquareLocations.push(snapshot.val()[key]);
-      }
-      return foursquareLocations;
-    });
   }
 
   // Recalculate the search coordinates for the map
@@ -115,9 +123,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       })
 
       // renderLocationsonMap();
-
-      // console.log('LOCATIONS', $scope.foursquareLocations)
-      // console.log('updating search circle', $scope.avgLat, $scope.avgLon, $scope.radius);
     })
   }
 
@@ -144,8 +149,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       div.className = 'marker-label';
       div.style.position = 'absolute';
       div.style.cursor = 'pointer';
-      div.style.width = '100px';
-      div.style.height = '20px';
       
       if (typeof(self.args.innerHTML) !== 'undefined') {
         div.innerHTML = self.args.innerHTML;
@@ -158,7 +161,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       // Add an on click event to the name on the marker
       google.maps.event.addDomListener(div, "click", function(event) {      
         console.log(this.dataset.marker_id);
-        $scope.highlight = { selected: index };
       });
       
       var panes = this.getPanes();
@@ -168,7 +170,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
     
     if (point) {
-      div.style.left = (point.x) + 'px';
+      div.style.left = (point.x + 15) + 'px';
       div.style.top = (point.y - 35) + 'px';
     }
   };
@@ -183,14 +185,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
   CustomMarker.prototype.getPosition = function() {
     return this.latlng; 
   };
-
-
-
-
-
-
-
-
 
 
 
