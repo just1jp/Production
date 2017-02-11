@@ -13,7 +13,7 @@
 <div flex layout="row" class="content-div">
 
   <!-- Sidenav Container (Container #3 )-->
-  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z4">
+  <md-sidenav layout="column" md-is-locked-open="true" class="sidenav md-whiteframe-z4">
     <md-subheader class="md-no-sticky" ng-controller="initializeMap">
       <md-tabs md-dynamic-height="" class="sidenav-tabs" md-stretch-tabs="always">
         <md-tab id="food-tab" md-on-select="queryByType('food')"><i class="fa fa-cutlery" aria-hidden="true"></i></md-tab>
@@ -31,9 +31,20 @@
 <!--         <br>
         {{ location.venue.hours.status || 'Contact for hours' }} -->
       </md-list-item>
-
     </md-list>
+
+    <!-- Chat Bottom Sheet-->
+    <div class="chat-sheet inset" layout="row" layout-sm="column" layout-align="center">
+      
+    </div>
+
+    <script type="text/ng-template" id="chat-template.html">
+      <md-bottom-sheet class="chat-sheet md-list md-has-header">
+        <md-subheader ng-cloak>Chat</md-subheader>
+      </md-bottom-sheet>
+    </script>
   </md-sidenav>
+
 
   <!-- Map Container (Container #4) -->
   <md-content flex id="content">
@@ -47,6 +58,9 @@
           origin="944 Market Street, 8th floor, San Francisco, CA 94102"
           destination="Embarcadero Center, San Francisco, CA">
         </directions> -->
+
+        <md-button flex="50" class="btn-chat-open md-primary md-raised" ng-controller="chatterboxCtrl" ng-click="showChat()">Chat</md-button>
+        
         <shape id="circle" name="circle" centered="true" 
           center="{{avgLat}} {{avgLon}}"
           stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
@@ -56,7 +70,7 @@
         <div ng-repeat="(key, value) in userLocations" >
           <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
           <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
-            <p class="user-label">{{value.username}}</p>
+            <p class="user-label">{{ value.username }}</p>
           </custom-marker>
         </div>
       </ng-map>

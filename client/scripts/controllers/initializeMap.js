@@ -194,11 +194,4 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
 
 
-
-
-
-
-
-
-
 });
