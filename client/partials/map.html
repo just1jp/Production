@@ -63,26 +63,16 @@
 
       <div class="map-wrapper">
         <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
-          <!-- <directions
-            draggable="false"
-            panel="directions-panel"
-            travel-mode="DRIVING"
-            origin="944 Market Street, 8th floor, San Francisco, CA 94102"
-            destination="Embarcadero Center, San Francisco, CA">
-          </directions> -->
-
-          <md-button flex="50" class="btn-chat-open md-primary md-raised" ng-controller="chatterboxCtrl" ng-click="showChat()">Chat</md-button>
-
           <shape id="circle" name="circle" centered="true" 
             center="{{avgLat}} {{avgLon}}"
             stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
-            radius={{radius}} editable="true" >
+            radius={{radius}} editable="true" on-center_changed="searchUpdate()" on-radius_changed="searchUpdate()">
           </shape>
           <directions suppress-markers="true"></directions>
           <div ng-repeat="(key, value) in userLocations" >
             <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
             <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
-              <p class="user-label">{{ value.username }}</p>
+              <p class="user-label">{{value.username}}</p>
             </custom-marker>
           </div>
         </ng-map>
@@ -96,3 +86,4 @@
 
 
     
+</div>

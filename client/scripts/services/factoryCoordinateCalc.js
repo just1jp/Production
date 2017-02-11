@@ -68,8 +68,8 @@ angular.module('myApp').factory('coordinateCalc', function($http, databaseAndAut
     });
 
     var circleData = {
-      'midpointLat': avgLat,
-      'midpointLon': avgLon,
+      'lat': avgLat,
+      'lng': avgLon,
       'radius': radius
     }
 

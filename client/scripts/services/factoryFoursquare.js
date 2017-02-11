@@ -2,17 +2,16 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
 
   var factory = {};
 
-  factory.getFoursquareData = function(locationType) {
-
+  factory.getFoursquareData = function(locationType, coordinates) {
     // Grab the location of all users on the map
-    coordinateCalc.getUserLocationData().then(function(coordinates) {
+    // coordinateCalc.getUserLocationData().then(function(coordinates) {
 
       // Calculate center circle from users on the map
-      var circleData = coordinateCalc.calculateCircle(coordinates);
+      // var circleData = coordinateCalc.calculateCircle(coordinates);
 
-      var lat = circleData.midpointLat;
-      var long = circleData.midpointLon;
-      var radius = circleData.radius;
+      var lat = coordinates.lat;
+      var long = coordinates.lng;
+      var radius = coordinates.radius;
       var latlon = lat + "," + long;
       section = locationType || 'food';
 
@@ -39,7 +38,7 @@ angular.module('myApp').factory('foursquare', function($http, databaseAndAuth, c
       });
 
 
-    });
+    // });
 
   };
 
