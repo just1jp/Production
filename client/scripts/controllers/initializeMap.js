@@ -156,21 +156,18 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.highlight = { selected: index };
   }
 
-
-// TODO FIX THIS FUNCTION
-
   // Recalculate the search coordinates for the map
   var updateCenterPointAndRadius = function() {
     coordinateCalc.getUserLocationData().then(function(coordinates) {
       circleData = coordinateCalc.calculateCircle(coordinates);
       
-      $scope.avgLat = circleData.midpointLat;
-      $scope.avgLon = circleData.midpointLon;
+      $scope.avgLat = circleData.lat;
+      $scope.avgLon = circleData.lng;
       $scope.radius = circleData.radius;
 
       databaseAndAuth.database.ref('/search_radius').set({
-        midpointLat: circleData.midpointLat,
-        midpointLon: circleData.midpointLon,
+        midpointLat: circleData.lat,
+        midpointLon: circleData.lng,
         radius: circleData.radius
       })
     })
