@@ -8,7 +8,6 @@
       <a href="#" class="toolbar-link" ng-click="showProfile()" ng-show="loggedIn">Profile</a>
       <a href="#" class="toolbar-link" ng-click="logOut()" ng-show="loggedIn">Logout</a>
     </span>
-      <!-- <span>{{badLogin}}</span> -->
   </md-toolbar>
 
   <div flex layout="row" class="content-div">
@@ -35,23 +34,18 @@
       </md-list>
 
       <!-- Chat Bottom Sheet-->
-      <div class="chat-sheet inset" layout="row" layout-sm="column" layout-align="center"></div>
-
       <script type="text/ng-template" id="chat-template.html">
         <md-bottom-sheet class="chat-sheet md-list md-has-header">
-          <md-subheader ng-cloak>Send a message</md-subheader>
-          <input type="text" size="500" ng-model="text" style="width: 95%" autofocus/><br>
-          <md-button type="submit" ng-click="sendMessage()">Send</md-button>
-          
+
           <div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
-
-            <div class="panel-body chat-window">
-              <div ng-repeat="message in messageObj">
-                <b>{{ message.username }}</b>: {{ message.text }}
-              </div>
-            </div> 
-
+            <div ng-repeat="message in messageObj">
+              <b>{{ message.username }}</b>: {{ message.text }}
+            </div>
           </div>
+
+          <input type="text" size="500" ng-model="text" style="width: 95%" autofocus class="chat-input"/>
+          <br>
+          <md-button type="submit" class="chat-button" ng-click="sendMessage()">Send</md-button>
 
         </md-bottom-sheet>
       </script>
