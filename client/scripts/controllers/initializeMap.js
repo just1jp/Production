@@ -9,7 +9,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
-    updateCenterPointAndRadius();
 
     databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
       $scope.foursquareLocations = [];
@@ -33,7 +32,20 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     $scope.$apply();
   });
 
-  // This is the function that sucks - getting called four times.
+  //Grab new search circle data
+  $scope.searchUpdate = function() {
+    // TODO: Grab updated circle data
+  }
+
+  // returns name of clicked sidenav list item
+  $scope.logName = function(name) {
+    console.log('Venue.name is', name);
+  }
+
+  $scope.queryByType = function(type) {
+    foursquare.getFoursquareData(type);
+  }
+
   NgMap.getMap().then(function(map) {
 
     var markers = [];
@@ -119,6 +131,9 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
       // renderLocationsonMap();
     })
   }
+
+  //Render search circle once
+  updateCenterPointAndRadius();
 
 
   // Create some new functionality for Google Maps Custom Markers
