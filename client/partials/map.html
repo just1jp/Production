@@ -41,6 +41,25 @@
     <script type="text/ng-template" id="chat-template.html">
       <md-bottom-sheet class="chat-sheet md-list md-has-header">
         <md-subheader ng-cloak>Chat</md-subheader>
+        <!-- <div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
+
+          <div class="panel-body chat-window" >
+            <div style="height: 80%">
+              <div ng-repeat="message in messageObj" style="margin: 10px 0;">
+                <b>{{message.username}}</b>: {{message.text}}
+              </div>
+            </div>  
+
+            <div class="input-field">
+              <form>
+                <input type="text" size="500" ng-model="text" style="width: 95%" autofocus /><br/>
+                <button type="submit" ng-click="sendMessage()" style="visibility: hidden">Send Message</button>
+              </form>
+            <div>
+
+          </div>
+
+        </div> -->
       </md-bottom-sheet>
     </script>
   </md-sidenav>
@@ -60,7 +79,7 @@
         </directions> -->
 
         <md-button flex="50" class="btn-chat-open md-primary md-raised" ng-controller="chatterboxCtrl" ng-click="showChat()">Chat</md-button>
-        
+
         <shape id="circle" name="circle" centered="true" 
           center="{{avgLat}} {{avgLon}}"
           stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
@@ -79,33 +98,7 @@
 
 </div>
 
-<!-- <div class="icon-message" ng-controller="registerLogInLogOut">
-    <img ng-show="loggedIn" src="../images/icon-message.png" ng-click="showPartial()">
-</div>  -->
 
-<!-- <div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
-
-  <div class="panel-body chat-window" >
-    <div style="height: 80%">
-      <div ng-repeat="message in messageObj" style="margin: 10px 0;">
-        <b>{{message.username}}</b>: {{message.text}}
-      </div>
-    </div>  
-    
-    <div class="chatCloseButton">
-      <a href="" ng-click="hidePartial()">Close</a>
-    </div>
-
-    <div class="input-field">
-      <form>
-        <input type="text" size="500" ng-model="text" style="width: 95%" autofocus /><br/>
-        <button type="submit" ng-click="sendMessage()" style="visibility: hidden">Send Message</button>
-      </form>
-    <div>
-
-  </div>
-
-</div> -->
 
 <div ng-controller="watchCurrentUserLocation"></div>
 
