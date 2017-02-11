@@ -293,7 +293,7 @@ ng-map {
   bottom: 0;
   padding: 8px 16px 88px 16px;
   z-index: 70;
-  background-color: rgb(121,134,203)
+  background-color: #DEDAD9;
 }
 
 .btn-chat-open {
@@ -307,9 +307,8 @@ ng-map {
 
 .panel {
   width: 283px;
-  height: 200px;
+  height: 216px;
   position: absolute;
-  bottom: 20;
   left: 8px;
   background-color: #fff;
   margin-top: 10px;
@@ -320,15 +319,15 @@ ng-map {
 
 .chat-input {
   position: absolute;
-  padding: 1px;
+  padding: 1px 3px;
   left: 8px;
-  bottom: 150px;
+  bottom: 135px;
   width: 258px;
 }
 
 .chat-button {
   position: absolute;
-  bottom: 100px;
+  bottom: 85px;
   left: 1px;
   border: 1px;
   border-style: solid;
