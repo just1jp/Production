@@ -24,8 +24,8 @@
 
       <md-list layout="column">
         <!-- Generate list item for each location result -->
-        <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="getLocInfo(location.venue.name)" >
-          <span class="location-name" ng-click="getLocInfo(location.venue.name)" layout-align="start">{{ location.venue.name }}</span>
+        <md-list-item class="location-list" ng-repeat="location in foursquareLocations track by $index" ng-click="getLocInfo(location.venue.location.lat, location.venue.location.lng, location.venue.name, location.venue.location.formattedAddress)" >
+          <span class="location-name" ng-click="getLocInfo(location.venue.location.lat, location.venue.location.lng, location.venue.name, location.venue.location.formattedAddress)" layout-align="start">{{ location.venue.name }}</span>
           <span class="location-price" layout-align="end">{{ '$'.repeat(location.venue.price.tier || 1 )}}</span>
         </md-list-item>
       </md-list>
@@ -63,7 +63,7 @@
           </shape>
           <directions suppress-markers="true"></directions>
           <div ng-repeat="(key, value) in userLocations" >
-            <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
+            <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" icon="{url: '/images/person-icon.png', origin: [0,0], anchor: [0,50]}"></marker>
             <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
               <p class="user-label">{{value.username}}</p>
             </custom-marker>
