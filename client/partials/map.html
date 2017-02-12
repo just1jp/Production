@@ -10,7 +10,7 @@
     </span>
   </md-toolbar>
 
-  <div flex layout="row" class="content-div">
+  <div flex layout="row" class="content-div" ng-controller="chatterboxCtrl">
 
     <!-- Sidenav Container (Container #3 )-->
     <md-sidenav layout="column" md-is-locked-open="true" class="sidenav md-whiteframe-z4">
@@ -34,7 +34,7 @@
       <script type="text/ng-template" id="chat-template.html">
         <md-bottom-sheet class="chat-sheet md-list md-has-header">
 
-          <div class="panel" ng-controller="chatterboxCtrl" ng-show="showMessages" ng-init="fetchMessage()">
+          <div class="panel" ng-show="showMessages" ng-init="fetchMessage()">
             <div ng-repeat="message in messageObj">
               <b>{{ message.username }}</b>: {{ message.text }}
             </div>
@@ -54,7 +54,7 @@
     <md-content flex id="content">
 
       <div class="map-wrapper">
-        <md-button flex="50" class="btn-chat-open md-primary md-raised" ng-controller="chatterboxCtrl" ng-click="showChat()">Chat</md-button>
+        <md-button flex="50" class="btn-chat-open md-primary md-raised" ng-click="showChat()">Chat</md-button>
         <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
           <shape id="circle" name="circle" centered="true" 
             center="{{avgLat}} {{avgLon}}"

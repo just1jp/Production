@@ -138,7 +138,7 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
     );
     locationDetails.push(locationDetail);
   }
-
+  
   // <-------- START OF MAP -------->
 
   NgMap.getMap().then(function(map) {

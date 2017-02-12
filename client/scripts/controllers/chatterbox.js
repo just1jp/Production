@@ -4,6 +4,22 @@
 */
 angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope, $location, $mdBottomSheet, databaseAndAuth, foursquare, speech) {
 
+  // <-------- START OF SPEECH LOGIC -------->
+
+  var keywords_updateSearch = ['search', 'look', 'what are', 'where'];
+  var keywords_directions = [];
+
+  // Each time a new text is added to the database check it for matches
+  var checkSpeechLogic = function(text) {
+    keywords_updateSearch.forEach(expression => {
+      if (text.indexOf(expression) !== -1) {
+        console.log('need to update search area');
+      }
+    })
+  };
+
+  // <-------- END OF SPEECH LOGIC -------->
+
   var database = firebase.database();
 
   $scope.messageObj = {};
@@ -13,7 +29,6 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
     * @description Gets the user email and username from the database. Takes user input ($scope.text) and updates the database with that input. Each input is added to the user that submitted it.
   */
   $scope.sendMessage = function(userId, text) {
-    console.log('sendMessage function')
     var chatEmail = databaseAndAuth.auth.currentUser.email;
     var chatUsername = chatEmail.slice(0, chatEmail.indexOf('@'));
     
@@ -24,7 +39,9 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
       text: $scope.text,
       createdAt: Date()
     });
-    console.log('')
+
+    checkSpeechLogic($scope.text);
+
     $scope.text = '';
   };
   /**
@@ -39,8 +56,7 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $rootScope
     
     ref.limitToLast(9).on('value', function(chat) {
       $scope.messageObj = chat.val();
-      console.log('messageObj', $scope.messageObj)
-      $scope.$apply();
+      // $scope.$apply();
     });
     $scope.showMessages = true;
   };
