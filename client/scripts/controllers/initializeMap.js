@@ -9,14 +9,6 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   $scope.$on('user:updatedOrAdded', function(event, data) {
     $scope.userLocations[data[0]] = data[1];
-
-    databaseAndAuth.database.ref('/foursquare_results').once('value').then(function(snapshot) {
-      $scope.foursquareLocations = [];
-      for (key in snapshot.val()) {
-        $scope.foursquareLocations.push(snapshot.val()[key]);
-      }
-    });
-    
     $scope.$apply();
   });
 
@@ -41,7 +33,11 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
   //Listen to updates to the search circle and update Foursquare results
   databaseAndAuth.database.ref('/search_radius').on('value', function(snapshot) {
-    
+
+    $scope.avgLat = snapshot.val().midpointLat;
+    $scope.avgLon = snapshot.val().midpointLon;
+    $scope.radius = snapshot.val().radius;
+
     var latlon = snapshot.val().midpointLat + "," + snapshot.val().midpointLon;
     var radius = snapshot.val().radius;
 
@@ -67,6 +63,14 @@ angular.module('myApp').controller('initializeMap', function($rootScope, $scope,
 
     });
 
+  });
+
+  // Listen to updates of foursquare and update side nav
+  databaseAndAuth.database.ref('/foursquare_results').on('value', function(snapshot) {
+    $scope.foursquareLocations = [];
+    for (key in snapshot.val()) {
+      $scope.foursquareLocations.push(snapshot.val()[key]);
+    }
   });
 
   // returns name of clicked sidenav list item

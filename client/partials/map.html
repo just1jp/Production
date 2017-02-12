@@ -57,7 +57,7 @@
         <ng-map class="myMap" center="current-location" zoom="16" default-style="false">
           <shape id="circle" name="circle" centered="true" 
             center="{{avgLat}} {{avgLon}}"
-            stroke-color='#8c00ff' stroke-opacity="0.5" stroke-weight="2"
+            stroke-color='#8c00ff' stroke-opacity="0.25" stroke-weight="2" fill-color='#8c00ff' fill-opacity="0.15"
             radius={{radius}} editable="true" on-center_changed="searchUpdate()" on-radius_changed="searchUpdate()">
           </shape>
           <directions suppress-markers="true"></directions>
